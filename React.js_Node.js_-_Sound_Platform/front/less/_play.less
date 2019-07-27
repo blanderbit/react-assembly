@@ -1,0 +1,204 @@
+/**
+ * Style for HTML of play page
+ */
+
+& , & body {
+  height: 100%;
+  width: 100%;
+  position:relative;
+  margin: 0;
+  padding: 0;
+}
+
+body.play {
+  overflow: hidden;
+}
+
+h1, h2, h3{
+  margin: 0;
+  padding: 0;
+}
+
+// TABS
+#musicinfo {
+  position: relative;
+  height: 12vh;
+  &:before {
+    display: block;
+    content: "";
+    position: relative;
+    margin: 0 15px;		
+    height: 1px;
+    background: white;
+    opacity: 0.3;
+    top: 0;
+  }
+  .artist-title,
+  .time {
+    font: 2.5vh/12vh @font-family-accent;
+  }
+  .listControl {
+    a {
+      display: inline-block;
+      margin-top: 1.25vh;
+      text-align: center;
+      &:hover {
+        text-decoration: none;
+        .icon {
+          color: darken(#38d4d6, 10%);
+          .transition(color, 125ms, ease-in-out);
+        }
+      }
+    }
+    .icon {
+      display: inline-block;
+      width: 7vh;
+      height: 7vh;
+      background: white;
+      color: #38d4d6;
+      .transition(color, 125ms, ease-in-out);
+      &.icon-love_this,
+      &.icon-less_often {
+        font-size: 5vh;
+        line-height: 7.5vh;
+      }
+      &.icon-never_again {
+        font-size: 4.5vh;
+        line-height: 7.5vh;
+      }
+    }
+    span {
+      margin-top: 0.25vh;
+      color: white;
+      display: block;
+    }
+  }
+}
+
+
+.tabs {
+  height: 41vh;
+  .tabs-wrapper {
+    height: 30vh;
+  }
+}
+
+.volumeSlider {
+  background: #fff;
+  width:20px;
+  height: 100%;
+}
+
+.time {
+  line-height: 12vh;
+}
+
+.listControl a {
+  padding-left: 10px;
+}
+
+.playingCover {
+  text-align:center;
+  margin-top: 2vh;
+}
+
+.playpause {
+  margin-top: 12vh;
+}
+
+.tab-musicid .ng-enter, 
+.album.ng-enter, 
+.tab-musicid .ng-leave {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.current-track-info {
+  font-size: 2.5vh;
+  text-align: left;
+  .vertical-align;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current-track-info__artist_name {
+  .uppercase
+}
+
+.switching-slider {
+  display: inline-block;
+  height: 6vh;
+  border: 2px solid white;
+  border-radius: 4vh;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    margin: 0;
+  }
+
+  &__text {
+    font-size: 1.2vh;
+    color: @brand-primary;
+    padding: 0 10px;
+  }
+
+  &__switch {
+    position: relative;
+    display: block;
+    width: 8vh;
+    height: 5vh;
+    flex-shrink: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 4vh;
+
+    &--dot {
+      position: absolute;
+      height: 4vh;
+      width: 4vh;
+      left: 0.5vh;
+      top: 0.5vh;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+      color: @brand-primary;
+      font-size: 1.5vh;
+      line-height: 4vh;
+      text-align: center;
+    }
+  }
+
+  input:checked + .switching-slider__slider {
+    background-color: @brand-primary;
+  }
+
+  input:focus + .switching-slider__slider {
+    box-shadow: 0 0 1px @brand-primary;
+  }
+
+  input:checked + .switching-slider__slider .switching-slider__slider--dot {
+    transform: translateX(3vh);
+  }
+}

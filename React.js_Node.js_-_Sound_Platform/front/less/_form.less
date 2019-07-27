@@ -1,0 +1,69 @@
+// override mixin to make form-controls focus right
+.form-control-focus(){
+  &:focus {
+    border: none;
+    box-shadow: 0 0 6px #f8b9b7;
+  }
+}
+
+form .text-danger {
+  &.ng-hide-add,
+  &.ng-hide-remove {
+    transition:all linear 0.5s;
+    display:block!important;
+  }
+  &.ng-hide-add.ng-hide-add-active,
+  &.ng-hide-remove {
+    opacity:0;
+  }
+  &.ng-hide-add,
+  &.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+  }
+}
+
+// instant AngularJS form validation
+input.ng-invalid.ng-dirty {
+  .alert-danger;
+}
+
+input.ng-valid.ng-dirty {
+  .alert-success;
+}
+
+// veritcal sliders
+input[orientation="vertical"] {
+  writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 28vh;
+    margin-top: 2vh;
+    padding: 0 5px;
+    display:inline;
+}
+
+.btn-reset {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cta-btn {
+  .btn-reset;
+  background-color: @brand-primary;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: @color-white;
+  font-weight: 700;
+  border-radius: 20px;
+  transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+  &:hover {
+    background-color: darken(@brand-primary, 10);
+  }
+}

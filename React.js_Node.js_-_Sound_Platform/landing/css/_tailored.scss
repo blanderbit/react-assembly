@@ -1,0 +1,60 @@
+.tailored {
+  background-color: #EBEBEB;
+  padding-bottom: 20px;
+
+  .circles {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 50px;
+  }
+
+  .section-header {
+    margin-bottom: 100px;
+  }
+
+  .progress-circle-container {
+    width: 100px;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      width: 200px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: 220px;
+    }
+  }
+
+  .progress-circle {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.3;
+  }
+
+  .progressbar-text {
+    color: $brand;
+    font-size: 20px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 32px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 36px;
+    }
+  }
+
+  .progress-passage {
+    text-align: center;
+    color: #999;
+    margin-top: 20px;
+  }
+}

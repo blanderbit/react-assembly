@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add paid period</h3>
+</div>
+<div class="modal-body">
+  <label>From</label>
+  <div class="input-group form-group">
+    <input type="text" class="form-control" ng-model="addPaidPeriodModalCtrl.paidPeriod.start" uib-datepicker-popup="dd-MMMM-yyyy"
+      is-open="addPaidPeriodModalCtrl.startDatePickerOpened">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="addPaidPeriodModalCtrl.toggleDatePicker('start')">
+        <i class="icon-calendar"></i>
+      </button>
+    </span>
+  </div>
+
+  <label>From</label>
+  <div class="input-group form-group">
+    <input type="text" class="form-control" ng-model="addPaidPeriodModalCtrl.paidPeriod.end" uib-datepicker-popup="dd-MMMM-yyyy"
+      is-open="addPaidPeriodModalCtrl.endDatePickerOpened">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="addPaidPeriodModalCtrl.toggleDatePicker('end')">
+        <i class="icon-calendar"></i>
+      </button>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1"
+      ng-model="addPaidPeriodModalCtrl.createChargebee">
+    <label class="form-check-label" for="exampleCheck1">Create chargebee subscription</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="addPaidPeriodModalCtrl.submit()">Save</button>
+  <button class="btn btn-default" ng-click="addPaidPeriodModalCtrl.cancel()">Cancel</button>
+</div>

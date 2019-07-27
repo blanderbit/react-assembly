@@ -1,0 +1,184 @@
+.track-info {
+  th {
+    width: 20%;
+  }
+  tr form {
+    display: inline;
+  }
+}
+
+.tracks-table {
+  .title-col,
+  .artist-col {
+    width: 19%;
+  }
+
+  .bpm-col,
+  .state-col,
+  .tag-col,
+  .year-col,
+  .added-col,
+  .actions-col {
+    width: 9%;
+    text-align: center;
+  }
+
+  .added-col {
+    width: 11%;
+    text-align: center;
+  }
+
+  .bpm-col {
+    width: 7%;
+    text-align: center;
+  }
+
+  .picture-col {
+    position: relative;
+    text-align: center;
+    width: 7%;
+  }
+
+  tbody tr {
+    &:hover {
+      background-color: #efefef;
+    }
+
+    &.deleted {
+      text-decoration: line-through;
+      opacity: 0.3;
+    }
+  }
+
+  thead {
+    .title-col,
+    .artist-col,
+    .bpm-col,
+    .tag-col,
+    .year-col,
+    .added-col {
+      cursor: pointer;
+    }
+  }
+}
+
+img.track-preview {
+  width: 200px;
+}
+
+img.track-image {
+  cursor: pointer;
+
+  .transition(max-width, 250ms, ease-in-out);
+
+  padding: 1px;
+  background-color: #ccc;
+  .rounded(1px);
+
+  max-width: 50px;
+
+  &.enlarged {
+    max-width: 250px;
+    position: absolute;
+    left: 10%;
+    z-index: 1;
+
+    padding: 4px;
+    .rounded(4px);
+  }
+}
+
+@player_height: 8vh;
+
+.player {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  background: #CCC;
+  height: @player_height;
+  line-height: @player_height;
+
+  .left {
+    float: left;
+  }
+
+  .play-controls {
+    .play-pause {
+      font-size: 4vh;
+    }
+
+    i {
+      font-size: 2.5vh;
+    }
+
+    span {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin: 0 5px;
+      cursor: pointer;
+      .transition(color, 100ms, ease-in);
+      color: black;
+      &:hover {
+        opacity: 0.9;
+        color: @brand-danger;
+      }
+      i {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+  }
+  .progress-indicator {
+    height: @player_height;
+    .progress {
+      .vertical-align;
+      height: 1vh;
+    }
+    float: left;
+    width: 33%;
+    margin: 0 10px;
+
+    &.playing {
+      cursor: pointer;
+    }
+  }
+
+  .cover-image {
+    float: left;
+    height: @player_height;
+    margin-left: 2em;
+    img {
+      height: 80%;
+    }
+  }
+
+  .track-name {
+    .text-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      line-height: 1.2;
+      height: @player_height;
+      p {
+        margin: 0;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .current-time {
+    color: @brand-danger;
+  }
+}
+
+.msg-block {
+  p {
+    padding: 5px;
+  }
+}

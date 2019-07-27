@@ -1,0 +1,91 @@
+.footer { background-color: #cacaca; color: #666; text-align: center; position: relative; overflow: hidden; z-index: 1; }
+.footer ul,.footer li,.footer p { margin: 0; padding: 0; }
+.footer ul { list-style: none; }
+.footer-menu { border-bottom: 1px solid #bababa; padding: 10px; }
+.footer-link a:hover { color: #000; }
+.footer-social li { display: inline-block; padding: 0 0.25em; }
+.footer-social ul {
+  -webkit-padding-start: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+.footer-social a {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  color: #3cb6b6;
+  font-size: 2em;
+  border: 2px solid #3cb6b6;
+  border-radius: 50%;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  transition-property: color, background-color;
+
+  i {
+    position: relative;
+    top: 0.1em
+  }
+}
+
+.footer-social a:hover { background-color: #3cb6b6; color: #fff; }
+.footer-copyright { color: #a0a0a0; border-top: 1px solid #bababa; margin: 30px 0; padding-top: 20px; }
+.footer-copyright i { color: #3cb6b6; font-size: 20px; }
+.footer-copyright a { color: #a0a0a0; }
+
+.footer {
+  .footer-link {
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      padding: 0 5px;
+    }
+
+    a {
+      color: #7f8180;
+      font-family: "Lato", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+  }
+
+  .footer-menu-2 {
+    padding: 30px 0;
+    
+    .footer-link a {
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif;
+      color: #a0a0a0;
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  /* fotter */
+  .footer { padding: 40px 0 60px 0; }
+  .footer-menu { padding-bottom: 20px; }
+  .footer-menu-2 { padding: 20px 0; }
+  .footer-link a { font-size: 14px; }
+  .footer-copyright a { font-size: 13px; }
+  .footer-copyright span { display: block; margin-top: 5px; }
+  .footer-copyright .footer-link { margin-top: 15px; }
+  .footer-copyright { margin: 20px 0; }
+}
+
+@media (min-width: $screen-sm-min) {
+  .footer-link a { font-size: 16px; }
+  .footer-copyright { margin: 30px 0; }
+  .footer-copyright a { font-size: 14px; }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    /* footer */
+  .footer { padding: 50px 0; }
+  .footer-menu { padding-bottom: 20px; }
+  .footer-copyright .footer-link { margin-top: 20px; }
+}

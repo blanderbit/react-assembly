@@ -1,0 +1,112 @@
+#pricing {
+  .pricing-price {
+    text-transform: uppercase;
+  }
+
+  .icon-logo {
+    font-size: 2em;
+    &:before {
+      width: auto;
+    }
+  }
+
+  .pricing-feature {
+    text-align: center;
+    font-size: 1.4em;
+    padding: 0.7em;
+
+    i {
+      font-size: 1.8em;
+      margin-right: 0.1em;
+    }
+
+    span {
+      position: relative;
+      bottom: 0.3em;
+    }
+  }
+
+  .pricing-img {
+    background-size: 60%;
+    width: 66px;
+    height: 66px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &--scissors {
+      background-image: url('/landing/img/cut-out_black.svg');
+    }
+
+    &--diamond {
+      background-image: url('/landing/img/diamond_black.svg');
+    }
+  }
+
+  .pricing-title,
+  .pricing-feature {
+    background-color: $brand;
+  }
+
+  .pricing {
+    border: 1px solid #333;
+    border-radius: 7px;
+    overflow: hidden;
+  }
+
+  .pricing-price {
+    color: #7f8180;
+    font-size: 1.6em;
+    margin-bottom: 0.8em;
+
+    span {
+      color: #fff;
+      font-size: 220%;
+      font-weight: 700;
+    }
+  }
+
+  .pricing-info {
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  .pricing-content {
+    padding-bottom: 0.6em;
+  }
+
+  .pricing-function {
+    text-transform: uppercase;
+    font-size: 1em;
+    padding: 20px 40px;
+
+    @media (max-width: $screen-md-min) {
+      padding: 20px 20px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      i {
+        font-size: 3.4em;
+        flex-grow: 0;
+      }
+
+      span {
+        padding-left: 10px;
+        flex-grow: 1;
+        margin: auto 0;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0.3em;
+      }
+    }
+  }
+
+  .pricing__button-wrapper {
+    margin-top: 25px;
+    text-align: center;
+  }
+}

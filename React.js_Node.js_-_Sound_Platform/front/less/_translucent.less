@@ -1,0 +1,20 @@
+// Extension to Twitter Bootstrap's mixin.less that adds support for translucent background colors in IE6-IE9 (deprecated as of IE9) 
+ 
+#translucent {
+    .background(@color: @white, @alpha: 1) {
+        // http://css3please.com/
+        // http://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx
+        background-color: transparent;
+        background-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+        // http://stackoverflow.com/questions/2877322/convert-opacity-to-hex-in-javascript
+        // http://robertnyman.com/2010/01/11/css-background-transparency-without-affecting-child-elements-through-rgba-and-filters/
+        @alphaHex: `Math.floor(@{alpha} * 255).toString(16)`;
+        @colorIE: `"@{color}".replace(/#/, "#"+@{alphaHex})`;
+        filter: ~`'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{colorIE},endColorstr=@{colorIE})'`;
+        zoom: 1;
+    }
+    .border(@color: @white, @alpha: 1) {
+        border-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+        background-clip: padding-box;
+    }
+}

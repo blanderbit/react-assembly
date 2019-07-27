@@ -1,0 +1,130 @@
+/* TAB - NOW PLAYING
+-------------------------------------------------- */
+.playlist {
+  height: 21vh;
+  width: 100%;
+}
+
+.albums {
+  padding:0;
+  margin:0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: 2.5vw;
+}
+
+.album {
+  position: relative;
+  flex-shrink: 0;
+	list-style:none;
+	vertical-align: middle;
+	width: 21vh;
+	height: 21vh;
+	opacity: 1;
+	background-image: none;
+	margin: 0 0.1vw;
+}
+
+.album_cover_img {
+  margin: 0.2vw 0 !important;
+  background: url('/play/images/coverart_generic.jpg') center;
+  background-size: cover;
+  height: 100%;
+  .transition(opacity, 0.5s, ease-in);
+  opacity: 0.5;
+}
+
+.album_cover_img--active {
+  opacity: 1;
+}
+
+.album .album_box {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: @brand-background;
+  opacity: 0;
+  .transition(opacity, 0.5s, ease-in);
+  visibility: hidden;
+
+  .like {
+    cursor: pointer;
+  }
+}
+
+.album:hover  {
+  .album_box {
+    visibility: visible;
+    opacity: 0.5;
+  }
+
+  .like-indicator {
+    border: none;
+    opacity: 0;
+  }
+}
+
+.album_info_array_down {
+  position: absolute;
+  top: -0.6vh;
+  font-size: 5vh;
+  color: @brand-background;
+  width: 25%;
+  margin-left: 75%;
+  visibility: hidden;
+  .transition(opacity, 0.5s, ease-in);
+  opacity: 0;
+}
+
+.album:hover .album_info_array_down {
+  visibility: visible;
+  opacity: 1;
+}
+
+.album_info {
+  color: #fff;
+  margin-top: 5%;
+  font-weight: bold;
+}
+
+.like {
+  font-size: 3.5vh;
+  margin-top: 5%;
+  padding-left: 0.5vh;
+}
+
+.like-indicator {
+  font-size: 3.5vh;
+  position: absolute;
+  top: 0;
+  margin-left: 10px;
+  margin-top: 5%;
+  background-color: #888;
+  opacity: 0.9;
+  color: #fff;
+  width: 4.5vh;
+  height: 4.5vh;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 4.5vh;
+  .circle;
+  .transition(opacity, 0.5s, ease-in);
+}
+
+.uppercased {
+  text-transform: uppercase;
+}
+
+.album_info p {
+  font-size: 2.5vh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.album.ng-leave.ng-leave-active {
+	width:0;
+}

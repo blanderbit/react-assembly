@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+bower_components
+npm-debug.log
+.*env
+generated
+backups
+.idea
+*.iml
+*.log
+backup*.sh
+mongo*.sh
+admin/templates/templates.js

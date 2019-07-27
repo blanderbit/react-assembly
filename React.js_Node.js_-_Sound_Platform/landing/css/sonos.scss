@@ -1,0 +1,22 @@
+.sonos {
+  &__button {
+    @media (min-width: $screen-md-min) {
+      margin-top: 40px;
+    }
+
+    text-align: center;
+
+    a {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+
+  .section-icon {
+    padding-top: 40px;
+
+    &-item {
+      margin-bottom: 40px;
+    }
+  }
+}

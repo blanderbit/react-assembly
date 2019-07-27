@@ -1,0 +1,115 @@
+<div class="modal-header">
+  <h3 class="modal-title">Edit track</h3>
+</div>
+<div class="modal-body">
+  <table class="table track-info">
+    <tbody>
+      <tr>
+        <th>Title</th>
+        <td>
+          <span editable-text="trackEditCtrl.track.title">
+            {{trackEditCtrl.track.title}}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>Artist Name</th>
+        <td>
+          <span editable-text="trackEditCtrl.track.artistName">
+            {{trackEditCtrl.track.artistName}}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>Fingerprinting State</th>
+        <td>{{trackEditCtrl.track.state}}</td>
+      </tr>
+      <tr ng-show="trackEditCtrl.track.state === 'error'">
+        <th>Fingerprinting error message</th>
+        <td>{{trackEditCtrl.track.providers.errorMessage}}</td>
+      </tr>
+      <tr>
+        <th>BPM</th>
+        <td>
+          <span editable-text="trackEditCtrl.track.bpm">
+            {{trackEditCtrl.track.bpm}}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>Release Year</th>
+        <td>
+          <span editable-text="trackEditCtrl.track.releaseYear">
+            {{trackEditCtrl.track.releaseYear}}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Tags
+        </th>
+        <td>
+          <label ng-repeat="tag in trackEditCtrl.tagsList" ng-model="tag.active"
+                 class="btn btn-warning" uib-btn-checkbox>
+                  {{tag.caption}}
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <th>Cover Image URL</th>
+        <td>
+          <span editable-text="trackEditCtrl.track.coverImage">
+            {{trackEditCtrl.track.coverImage}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div ng-messages="trackEditCtrl.fingerprintState" class="msg-block" role="alert">
+    <p ng-message="success" class="bg-success">Successfully fingerprinted. Don't forget to save it!</p>
+    <p ng-message="fail" class="bg-warning">Failed to fingerprint</p>
+    <div ng-message="processing" class="load5">
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <div ng-if="trackEditCtrl.fingerprintState.eligible">
+    <p>
+    Fingerprinting of This track was not successfull.<br>
+    You can try to re-fingerprint it (send it again to Echonest).
+    </p>
+    <button class="btn btn-primary"
+            ng-click="trackEditCtrl.fingerprint()">
+            Fingerprint
+    </button>
+  </div>
+
+  <br>
+
+  <section ng-if="trackEditCtrl.track.type === 'SoundcloudSong'">
+    <h4>Original Soundcloud info</h4>
+
+    <table class="table track-info">
+      <tbody>
+        <tr>
+          <th>User name</th>
+          <td>{{:: trackEditCtrl.track.soundcloud_user}}</td>
+        </tr>
+
+        <tr>
+          <th>Title</th>
+          <td>{{:: trackEditCtrl.track.soundcloud_title}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <br>
+  <img ng-src="{{trackEditCtrl.track.coverImage}}"
+       class="img-thumbnail track-preview" alt="Track preview image">
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="trackEditCtrl.save()">Save</button>
+  <button class="btn btn-warning" ng-click="trackEditCtrl.cancel()">Cancel</button>
+</div>

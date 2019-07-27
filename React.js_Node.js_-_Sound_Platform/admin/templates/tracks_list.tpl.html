@@ -1,0 +1,213 @@
+<div class="container-fluid">
+  <h3>Tracks</h3>
+
+  <h4>Type:</h4>
+  <div class="btn-group">
+    <label class="btn btn-warning" ng-model="tracksCtrl.collection" uib-btn-radio="'Track'">All</label>
+    <label class="btn btn-warning" ng-model="tracksCtrl.collection" uib-btn-radio="'Song'">S3</label>
+    <label class="btn btn-warning" ng-model="tracksCtrl.collection" uib-btn-radio="'SoundcloudSong'">Soundcloud</label>
+    <label class="btn btn-warning" ng-model="tracksCtrl.collection" uib-btn-radio="'PitchedTrack'">Pitched</label>
+  </div>
+
+  <h4>Tags:</h4>
+  <div class="btn-group">
+    <label ng-repeat="tag in ::tracksCtrl.ALL_TAGS track by tag.id"
+      class="btn btn-warning"
+      ng-model="tracksCtrl.specificTags[tag.id]"
+      uib-btn-checkbox
+      ng-bind="::tag.label">
+    </label>
+  </div>
+
+  <div class="col-md-12">
+    <div class="list-group">
+      <h4>
+        <small ng-show="tracksCtrl.totalTracks">
+          (showing {{tracksCtrl.tracks.length}} of
+            {{tracksCtrl.totalTracks}} total)</small>
+      </h4>
+
+      <div class="search-container form-inline">
+        <input type="text"
+               ng-model="tracksCtrl.search"
+               ng-model-options="{'debounce': 500}"
+               ng-change="tracksCtrl.doSearch()"
+               class="form-control"
+               placeholder="Type to search...">
+        <button class="btn btn-default"
+          ng-click="tracksCtrl.search = ''; tracksCtrl.doSearch()"
+        >Clear</button>
+      </div>
+
+      <div class="scroll-wrapper"
+           infinite-scroll="tracksCtrl.loadMoreTracks()"
+           infinite-scroll-disabled='isLoading ||
+             tracksCtrl.tracks.length === tracksCtrl.totalTracks'>
+        <table class="table table-bordered tracks-table">
+        <thead>
+          <tr>
+            <th class="title-col"
+                ng-click="tracksCtrl.toggleSort('title')">
+              Title
+              <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                 ng-if="tracksCtrl.sortKey === 'title'"></i>
+            </th>
+
+            <th class="artist-col"
+                ng-click="tracksCtrl.toggleSort('artistName')">
+              Artist Name
+              <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                 ng-if="tracksCtrl.sortKey === 'artistName'"></i>
+            </th>
+
+            <th class="picture-col">
+              Picture
+            </th>
+
+            <th class="year-col"
+                ng-click="tracksCtrl.toggleSort('releaseYear')">
+              Release Year
+              <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                 ng-if="tracksCtrl.sortKey === 'releaseYear'"></i>
+            </th>
+
+            <th class="bpm-col"
+                ng-click="tracksCtrl.toggleSort('bpm')">
+              BPM
+              <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                 ng-if="tracksCtrl.sortKey === 'bpm'"></i>
+            </th>
+
+            <th class="tag-col">
+              Origin
+            </th>
+
+            <th class="tag-col"
+                ng-click="tracksCtrl.toggleSort('tags')">
+              Flavor
+              <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                 ng-if="tracksCtrl.sortKey === 'tags'"></i>
+            </th>
+
+            <th class="tag-col">
+              Style
+            </th>
+
+            <th class="state-col">State</th>
+
+            <th class="added-col"
+                ng-click="tracksCtrl.toggleSort('createdDate')">
+                Added on
+                <i ng-class="tracksCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+                   ng-if="tracksCtrl.sortKey === 'createdDate'"></i>
+            </th>
+
+            <th class="actions-col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="track in tracksCtrl.tracks"
+              ng-class="{'success': tracksCtrl.playingTrack === track,
+              'deleted': track.state === 'deleted'}"
+              ng-click="tracksCtrl.toggleSelection(track)">
+            <td class="title-col">
+              {{track.title}}
+              <em ng-if="tracksCtrl.playingTrack === track">
+                ({{tracksCtrl.isPaused() ? 'PAUSED' : 'PLAYING'}})
+              </em>
+            </td>
+            <td class="artist-col">{{track.artistName}}</td>
+            <td class="picture-col">
+              <img ng-if="track.coverImage"
+                   ng-src="{{track.coverImage}}"
+                   ng-click="tracksCtrl.toggleImage($event)"
+                   class="track-image"
+                   alt="Cover Image">
+            </td>
+            <td class="year-col">{{track.releaseYear}}</td>
+            <td class="bpm-col">{{track.bpm | number: 1}}</td>
+            <td class="tag-col"
+                ng-style="::({'background-color': tracksCtrl.TRACK_TYPES[track.type].color })">
+              {{ ::(tracksCtrl.TRACK_TYPES[track.type].label) }}
+            </td>
+            <td class="tag-col">
+              {{tracksCtrl.TracksService.getReadableTags(track)}}
+            </td>
+            <td class="tag-col">
+              {{tracksCtrl.TracksService.getStyleTags(track)}}
+            </td>
+            <td class="state-col" ng-class="{'warning': !tracksCtrl.trackIsValid(track)}">
+              <span ng-bind="track.state"></span>
+            </td>
+            <td class="added-col">{{track.createdDate | date}}</td>
+            <td class="actions-col">
+              <button class="btn btn-default btn-xs"
+                ng-click="tracksCtrl.togglePlay(track)">
+                <i ng-class="tracksCtrl.isCurrent(track) && !tracksCtrl.isPaused() ? 'icon-pause' : 'icon-play'"></i>
+              </button>
+
+              <button class="btn btn-default btn-xs"
+                title="Click to open track edit modal"
+                ng-click="tracksCtrl.openEditModal(track)">
+                <i class="icon-wrench"></i>
+              </button>
+
+              <button class="btn btn-danger btn-xs"
+                title="Delete track"
+                ng-click="tracksCtrl.deleteTrack(track)">
+                <i class="icon-cross"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="player" ng-show="tracksCtrl.playingTrack">
+  <div class="container">
+    <div class="col-xs-2 play-controls">
+      <span ng-click="tracksCtrl.playPrevious()">
+        <i class="icon-previous"></i>
+      </span>
+
+      <span ng-click="tracksCtrl.playingTrack && tracksCtrl.togglePlay(tracksCtrl.playingTrack)">
+        <i class="play-pause"
+           ng-class="!tracksCtrl.playingTrack || tracksCtrl.isPaused() ? 'icon-play' : 'icon-pause'">
+        </i>
+      </span>
+
+      <span ng-click="tracksCtrl.playNext()">
+        <i class="icon-next"></i>
+      </span>
+    </div>
+
+    <div class="left">
+      <span class="current-time" ng-bind="tracksCtrl.currentTimer"></span>
+    </div>
+
+    <div class="progress-indicator"
+         ng-click="tracksCtrl.handleProgressBarClick($event)"
+         ng-class="{playing: !!tracksCtrl.playingSound}">
+      <uib-progressbar value="tracksCtrl.playingProgress" type="danger"></uib-progressbar>
+    </div>
+
+    <div class="left">
+      <span class="full-time" ng-bind="tracksCtrl.fullTimer"></span>
+    </div>
+
+    <div class="cover-image">
+      <img ng-src="{{tracksCtrl.playingTrack.coverImage || 'admin/images/coverart_generic.jpg'}}">
+    </div>
+
+    <div class="col-xs-3 track-name">
+      <div class="text-container">
+        <p><strong ng-bind="tracksCtrl.playingTrack.artistName"></strong></p>
+        <p ng-bind="tracksCtrl.playingTrack.title">Track title</p>
+      </div>
+    </div>
+  </div>
+
+</footer>

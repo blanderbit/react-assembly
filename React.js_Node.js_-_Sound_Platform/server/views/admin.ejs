@@ -1,0 +1,47 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="static no-js lt-ie9 lt-ie8 lt-ie7 play"> <![endif]-->
+<!--[if IE 7]>         <html class="static no-js lt-ie9 lt-ie8 play"> <![endif]-->
+<!--[if IE 8]>         <html class="static no-js lt-ie9 play"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="static no-js play"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Soundsuit | Admin</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="admin/css/admin.css?<%= revision %>">
+    <link rel="shortcut icon" href="/admin/images/favicon.ico">
+  </head>
+  <body ng-cloak ng-app="admin">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 pull-left text-left">
+          <h1><i class="icon icon-soundsuit"></i><span class="text-hide">Soundsuit</span></h1>
+        </div>
+      </div>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a ui-sref="searchAlgorithm">Search Algorithm</a></li>
+              <li><a ui-sref="bpm">BPM Corridors</a></li>
+              <li><a ui-sref="tracks">Tracks</a></li>
+              <li><a ui-sref="users">Users</a></li>
+              <li><a ui-sref="tracksStats">Tracks Stats</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+
+    <div ui-view></div>
+    <!--[if lt IE 9]>
+    <script src="js/ie.js"></script>
+    <![endif]-->
+
+  <script src="admin/js/admin-vendor.js?<%= revision %>"></script>
+  <script src="admin/js/admin.js?<%= revision %>"></script>
+</body>
+</html>

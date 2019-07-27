@@ -1,0 +1,58 @@
+/* TAB - CUSTOMER SUPPORT
+-------------------------------------------------- */
+&{
+	overflow: hidden;
+}
+	
+h2 {
+	text-align: center;
+	height: 15vh;
+	.icon {
+		display: inline-block;
+		font-size: 12vh;
+		margin-top: 1.5vh;
+	}
+}
+ul {
+	display: block;
+	position: relative;
+	width: 80%;
+	height: 15vh;
+	margin-left: 10%;
+	list-style: none;
+	border-top: 1px #a8a8a8 solid;
+	li {
+		width: 50%;
+		float: left;
+		width: 50%;
+		line-height: 15vh;
+		text-align: center;
+		a {
+			font-weight: 300;
+			font-size: 4vh;
+			letter-spacing: -0.1vh;
+			color: #404040;
+			&:hover {
+				text-decoration: none;
+			}
+			.talk-bubble {
+				position: relative;
+				display: inline-block;
+				top: 1vh;
+				margin-right: 1.5vh;
+				width: 9vh;
+				height: 9vh;
+				text-align: center;
+				font-size: 5.5vh;
+				line-height: 10vh;
+				&:before {
+					position: absolute;
+					left: -0.5vh;
+					content: "\e616";
+					font-size: 10vh;
+					font-family: 'soundsuit_icons';
+				}
+			}
+		}
+	}
+}

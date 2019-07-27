@@ -1,0 +1,132 @@
+<div class="container">
+  <h4>
+    <span ng-bind="'Users'">Loading...</span>
+    <small ng-show="usersCtrl.totalUsers">
+      (showing {{usersCtrl.users.length}} of
+        {{usersCtrl.totalUsers}} total)</small>
+  </h4>
+
+  <div class="form-row clearfix">
+    <button class="btn btn-primary pull-right"
+      ui-sref="userNew"
+    >Add new</button>
+  </div>
+
+  <div class="search-container form-inline">
+    <input type="text"
+           ng-model="usersCtrl.search"
+           ng-model-options="{'debounce': 300}"
+           ng-change="usersCtrl.reload()"
+           class="form-control"
+           placeholder="Type to search...">
+    <button class="btn btn-default"
+      ng-click="usersCtrl.search = ''; usersCtrl.reload()"
+    >Clear</button>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"
+             ng-model="usersCtrl.includeAnon"
+             ng-change="usersCtrl.reload()">
+           Include anonymous
+     </label>
+  </div>
+</div>
+
+<div class="container">
+  <div class="scroll-wrapper"
+       infinite-scroll="usersCtrl.loadMoreUsers()"
+       infinite-scroll-disabled="usersCtrl.noMoreToLoad || usersCtrl.isLoading">
+    <table class="table table-bordered tracks-table">
+    <thead>
+      <tr>
+        <th class="sortable email-col"
+            ng-click="usersCtrl.toggleSort('email')">
+          Email
+          <i ng-class="usersCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+             ng-if="usersCtrl.sortKey === 'email'"></i>
+        </th>
+
+        <th class="sortable"
+            ng-click="usersCtrl.toggleSort('created')">
+          Created date
+          <i ng-class="usersCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+             ng-if="usersCtrl.sortKey === 'created'"></i>
+        </th>
+
+        <th class="sortable"
+            ng-click="usersCtrl.toggleSort('trial_end')">
+          Trial End
+          <i ng-class="usersCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+             ng-if="usersCtrl.sortKey === 'trial_end'"></i>
+        </th>
+
+        <th>
+          Active Paid Period
+        </th>
+
+        <th>
+          Pending Invoice
+        </th>
+
+        <th class="sortable admin-col"
+            ng-click="usersCtrl.toggleSort('admin')">
+          Admin
+          <i ng-class="usersCtrl.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+             ng-if="usersCtrl.sortKey === 'admin'"></i>
+        </th>
+
+        <th class="last-played-col">
+          Last Played
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in usersCtrl.users track by user._id">
+        <td class="">
+          <a ui-sref="user({userId: user._id})">{{::user.email}}</a>
+        </td>
+
+        <td class="">{{::user.created | date}}</td>
+
+        <td class=""
+          ng-class="{
+            'bg-warning': user.trial_end && !user.hasActivePaidPeriod,
+            'bg-danger': user.trial_end && !user.hasActivePaidPeriod && user.trialEnded,
+            'bg-success': user.trial_end && user.hasActivePaidPeriod
+          }"
+        >{{::user.trial_end | date}}</td>
+
+        <td>
+          <span ng-if="::(user.hasActivePaidPeriod && user.activePaidPeriod.end)">
+            Till <b ng-bind="::user.activePaidPeriod.end | date"></b>
+          </span>
+        </td>
+
+        <td ng-if="!user.lastSubscription.pending"></td>
+
+        <td ng-if="user.lastSubscription.pending" class="bg-warning">
+          {{ ::user.lastSubscription.date | date:'MMM dd' }}
+          <button class="btn btn-xs btn-primary"
+                  ng-if="user.lastSubscription.pending"
+                  ng-click="usersCtrl.resetPendingInvoice(user)"
+          >Reset</button>
+        </td>
+
+        <td class="admin-col">
+          <span ng-if="user.admin">
+            <i class="icon-user-tie"></i>
+          </span>
+        </td>
+
+        <td class="last-played-col">
+          <span ng-if="user.lastPlayedTrack" title="{{::user.lastPlayedTrack.time_played | date}}">
+            {{::user.lastPlayedTrack.time_played | played_at}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

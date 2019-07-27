@@ -1,0 +1,16 @@
+{
+	"register.title": "30 Tage kostenlos testen",
+	"register.sentence1": "Danke, dass Sie Soundsuit nutzen!",
+	"register.sentence2": "Legen Sie ein Konto an, damit Sie die 30-tägige kostenlose Testversion ausprobieren können.",
+	"register.sentence3": "Ohne Kreditkarte und ohne Kaufverpflichtung.",
+	"register.form.company_name": "Firma",
+	"register.form.email": "E-Mail Adresse",
+	"register.form.password": "Passwort",
+	"register.info_agreement": "Ja, ich möchte Informationen wie Produktupdates, Tutorien, Rabatte, Feedbackumfragen, usw. erhalten.",
+	"register.toc_agreement": "Ich akzeptiere die {{{toc}}}, und habe die {{{pp}}} gelesen.",
+	"register.toc": "allgemeinen Geschäftsbedingungen",
+	"register.privacy_policy": "Datenschutzhinweise",
+	"register.form.submit": "Jetzt kostenlos registrieren",
+	"register.form.first_name": "Vorname",
+	"register.form.last_name": "Nachname"
+}

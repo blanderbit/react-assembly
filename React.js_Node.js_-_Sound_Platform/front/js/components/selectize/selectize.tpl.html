@@ -1,0 +1,18 @@
+<div class="selectize js-selectize-container">
+    <div class="selectize__icon" ng-click="onIconClick()">
+        <i ng-class="iconClass"></i>
+        <div class="info-box">
+            {{tooltipText}}
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="selectize__current selectize__item js-selectize-current">{{ selected || defaultLabel || 'Please select'}}</div>
+    <div class="selectize__options selectize__options-animate js-selectize-options"
+         ng-class="direction">
+        <div class="dropdown-arrow"></div>
+        <ul ng-transclude></ul>
+    </div>
+    <div class="selectize__arrow">
+        <i class="icon icon-arrowdown"></i>
+    </div>
+</div>

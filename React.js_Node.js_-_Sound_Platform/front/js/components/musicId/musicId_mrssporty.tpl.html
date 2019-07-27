@@ -1,0 +1,85 @@
+<form class="music-id" ng-class="{open: musicId.isOpen}"
+      name="musicId.form"
+      ng-click="!musicId.isOpen && musicId.toggleSection()">
+  <div class="music-id__trigger" ng-show="musicId.isOpen">
+    <i ng-click="musicId.toggleSection($event)" class="icon icon-angle-left"></i>
+  </div>
+
+  <div class="music-id__main">
+    <section class="music-id__item">
+      <selectize selected="musicId.selectionState.workout_type | map:musicId.UserService.WORKOUT_TYPES"
+                 default-label="No specific workout type"
+                 icon-class="icon icon-sport-shoe"
+                 direction="down"
+                 tooltip-text="Select your workout type"
+                 on-icon-click="musicId.toggleSection()"
+                 close-on-click="true">
+          <li class="item" ng-repeat="i in ::musicId.UserService.WORKOUT_TYPES"
+            ng-class="{selected: musicId.selectionState.workout_type === i.value}">
+              <label>
+                  <input type="radio"
+                    ng-value="::i.value"
+                    name="workout_type"
+                    ng-model="musicId.selectionState.workout_type">
+                  {{::i.label}}
+              </label>
+          </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Workout Type">Workout Type</h3>
+    </section>
+
+    <section class="music-id__item">
+      <selectize selected="musicId.selectionState.customer_age | map:musicId.UserService.CUSTOMER_AGES"
+                 default-label="No specific customer age"
+                 icon-class="icon icon-user-group"
+                 direction="down"
+                 tooltip-text="Select your customer age"
+                 on-icon-click="musicId.toggleSection()">
+        <li class="item" ng-repeat="i in ::musicId.UserService.CUSTOMER_AGES"
+          ng-class="{selected: musicId.$rootScope.inArray(musicId.selectionState.customer_age, i.value)}">
+          <label>
+              <input type="checkbox"
+                name="customer_age"
+                ng-click="musicId.toggleItem(musicId.selectionState.customer_age, i.value); musicId.form.$setDirty()"
+                ng-checked="musicId.$rootScope.inArray(musicId.selectionState.customer_age, i.value)">
+              {{::i.label}}
+          </label>
+        </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Age Group">Age Group</h3>
+    </section>
+
+    <section class="music-id__item" ng-if="!musicId.IS_FITBOX">
+      <selectize selected="musicId.selectionState.changing_voice | map:musicId.UserService.CHANGING_VOICES"
+                 default-label="None"
+                 icon-class="icon icon-voice"
+                 direction="down"
+                 tooltip-text="Select switching voice"
+                 on-icon-click="musicId.toggleSection()"
+                 close-on-click="true">
+        <li class="item" ng-repeat="i in ::musicId.UserService.CHANGING_VOICES"
+          ng-class="{selected: musicId.selectionState.changing_voice === i.value}">
+          <label>
+              <input type="radio"
+                ng-value="::i.value"
+                name="changing_voice"
+                ng-model="musicId.selectionState.changing_voice">
+              {{::i.label}}
+          </label>
+        </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Switching Voice">Switching Voice</h3>
+    </section>
+
+    <div class="music-id__save-container"
+      ng-show="musicId.isOpen"
+    >
+      <button
+        ng-click="musicId.saveProfile()"
+        ng-disabled="musicId.form.$pristine"
+      >
+        Save my profile
+      </button>
+    </div>
+  </div>
+</form>

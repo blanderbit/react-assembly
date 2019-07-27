@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ ::(confirmationModal.resolve.title || 'Confirm') }}</h3>
+</div>
+<div class="modal-body" ng-bind="::confirmationModal.resolve.description"></div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="confirmationModal.close()">
+    {{ ::(confirmationModal.resolve.okButton ? confirmationModal.resolve.okButton : 'Confirm') }}
+  </button>
+  <button class="btn" ng-click="confirmationModal.dismiss()">
+    {{ ::(confirmationModal.resolve.cancelButton ? confirmationModal.resolve.cancelButton : 'Cancel') }}
+  </button>
+</div>

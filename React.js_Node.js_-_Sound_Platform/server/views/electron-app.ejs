@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="play" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Soundsuit</title>
+    <meta name="description" content="Soundsuit web player">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/electron-app/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/electron-app/images/apple-touch-icon-precomposed.png">
+    <% if (user.constructor.specialUserClass) { %>
+      <script>
+        window.PLAYER_MODE = '<%= user.constructor.playerMode %>';
+      </script>
+    <% } %>
+    <script>
+      window.ELECTRON_ENV = true;
+    </script>
+    <link rel="stylesheet" href="/electron-app/css/play.css?<%= revision %>">
+  </head>
+
+  <body class="play">
+    <player-main ng-cloak ng-app="app"></player-main>
+
+    <script src="/electron-app/js/play-vendor.js?<%= revision %>"></script>
+    <script src="/electron-app/js/play.js?<%= revision %>"></script>
+
+    <%- partial('partials/ga') -%>
+  </body>
+</html>

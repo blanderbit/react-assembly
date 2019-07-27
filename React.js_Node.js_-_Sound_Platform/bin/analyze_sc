@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+
+// load config
+var filePath = path.join(__dirname, '..', '.env');
+if (process.env.NODE_ENV === 'local' && fs.existsSync(filePath)) {
+  require('node-env-file')(filePath);
+}
+
+var fingerprinter = require('../server/fingerprinter/soundcloud');
+
+fingerprinter();

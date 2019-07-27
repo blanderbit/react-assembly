@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+/**
+ * Command-line interface to update similar genres in DB
+ */
+
+var fs = require('fs'),
+	path = require('path'),
+	env = require('node-env-file');
+
+// load config
+if (fs.existsSync(path.join(__dirname, '..', '.env'))) {
+  env('.env');
+}
+
+var update = require('../server/analysis/echonest-genres/update-system-genres'),
+    genres = ["pop", "rock", "world", "electro", "jazz", "soul"];
+
+update(genres);

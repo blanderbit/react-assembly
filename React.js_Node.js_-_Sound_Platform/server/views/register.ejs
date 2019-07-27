@@ -1,0 +1,133 @@
+<% layout('layout/basic') -%>
+
+<%- partial('partials/register_header') -%>
+
+<% block('htmllang', locale) -%>
+
+<article class="register-page">
+  <div class="container">
+    <div ng-controller="RegisterCtl as register">
+      <div class="alert-container">
+        <div ng-if="register.error" class="alert alert-danger">
+          {{:: register.error }}
+          <button class="btn btn-reset alert__dismiss"
+            ng-click="register.error=null;"
+            type="button">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+
+        <div ng-if="register.success" class="alert alert-success">
+          {{:: register.success }}
+          <button class="btn btn-reset alert__dismiss"
+            ng-click="register.success=null;"
+            type="button">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+      </div>
+
+      <h1 class="register-page__header-main"><%= __('register.title') %></h1>
+
+      <p>
+        <%= __('register.sentence1') %>
+        <br>
+        <%= __('register.sentence2') %>
+        <br>
+        <%= __('register.sentence3') %>
+      </p>
+
+      <form name="register.form" class="col-md-6 col-md-offset-3"
+        ng-submit="register.submit()">
+        <div class="form-box__control-group">
+          <input ng-model="register.user.company_name"
+            required
+            name="company_name"
+            type="text"
+            placeholder="<%= __('register.form.company_name') %>"
+            class="form-control">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="register.user.first_name"
+            required
+            name="first_name"
+            type="text"
+            placeholder="<%= __('register.form.first_name') %>"
+            class="form-control">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="register.user.last_name"
+            required
+            name="last_name"
+            type="text"
+            placeholder="<%= __('register.form.last_name') %>"
+            class="form-control">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="register.user.email"
+            required
+            name="email"
+            type="email"
+            placeholder="<%= __('register.form.email') %>"
+            class="form-control">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="register.user.password"
+            required
+            name="password"
+            type="password"
+            placeholder="<%= __('register.form.password') %>"
+            class="form-control">
+        </div>
+
+        <div class="register-page__form-toggles clearfix row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="register-page__toggle">
+              <label class="toggle">
+                <input type="checkbox"
+                  ng-model="register.user.accept_receive_info"
+                  name="accept_receive_info">
+                <span class="toggle__slider round"></span>
+              </label>
+
+              <p>
+                <%= __('register.info_agreement') %>
+              </p>
+            </div>
+
+            <div class="register-page__toggle">
+              <label class="toggle">
+                <input type="checkbox"
+                  required
+                  ng-model="register.user.accept_tos"
+                  name="accept_tos">
+                <span class="toggle__slider round"></span>
+              </label>
+
+              <p>
+                <%- __('register.toc_agreement', {
+                  toc: '<a href="/terms" class="link" target="_blank">' + __('register.toc') + '</a>',
+                  pp: '<a href="/privacy.html" class="link" target="_blank">' + __('register.privacy_policy') + '</a>'
+                }) %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="register-page__btn-container clearfix">
+          <div class="col-md-8 col-md-offset-2">
+            <button ng-disabled="register.form.$invalid || register.disabled"
+              class="cta-btn btn"
+              type="submit">
+              <%= __('register.form.submit') %>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</article>

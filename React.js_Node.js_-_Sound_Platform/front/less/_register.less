@@ -1,0 +1,84 @@
+.register-page {
+  background-color: @brand-background;
+  min-height: 91vh;
+  color: @color-white;
+  text-align: center;
+  padding: 5vh 0;
+
+  &__header-main {
+    margin-bottom: 6vh;
+  }
+
+  &__form-toggles {
+    margin-top: 5vh;
+  }
+
+  &__toggle {
+    display: flex;
+    text-align: left;
+
+    .toggle {
+      margin-right: 2em;
+    }
+  }
+
+  &__btn-container {
+    margin-top: 2em;
+
+    .cta-btn {
+      width: 100%;
+      padding: 15px 40px;
+    }
+  }
+
+  &__header {
+    background-color: #000;
+    min-height: 50px;
+    display: flex;
+    padding: 0 2vw;
+
+    .logo-container {
+      text-align: center;
+      color: #fff;
+
+      h1 {
+        height: 9vh;
+        line-height: 9vh;
+      }
+    }
+
+    .login-btn {
+      min-width: 0;
+
+      @media (min-width: 768px) {
+        position: absolute;
+        right: 2vw;
+      }
+    }
+    .login-btn .btn {
+      color: @brand-primary;
+      border-color: @brand-primary;
+      text-transform: uppercase;
+      padding-left: 2em;
+      padding-right: 2em;
+
+      &:hover {
+        color: @brand-primary-hover;
+        border-color: @brand-primary-hover;
+      }
+    }
+  }
+
+  &__link-logo {
+    color: @color-white;
+
+    @media (min-width: 768px) {
+      text-align: center;
+    }
+    flex-grow: 1;
+
+    a:focus {
+      text-decoration: none;
+    }
+  }
+}

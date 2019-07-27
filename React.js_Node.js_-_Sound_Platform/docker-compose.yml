@@ -1,0 +1,47 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "35301:35301"
+    volumes:
+      - ./admin:/usr/src/app/admin
+      - ./front:/usr/src/app/front
+      - ./gulp:/usr/src/app/gulp
+      - ./landing:/usr/src/app/landing
+      - ./landing-pages:/usr/src/app/landing-pages
+      - ./server:/usr/src/app/server
+      - /usr/src/app/node_modules
+      - soundsuit-generated:/usr/src/app/generated
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    env_file: .env
+    environment:
+      - MONGOLAB_URI=mongodb://mongo/soundsuit-prod
+
+  mongo:
+    image: mongo:3.2.6
+    volumes:
+      - soundsuit-mongo-data:/data/db
+    logging:
+      driver: none
+    ports:
+      - "27017:27017"
+
+  nginx:
+    image: nginx
+    logging:
+      driver: none
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./keys:/etc/nginx/ssl
+      - soundsuit-generated:/usr/share/nginx/html/soundsuit
+
+
+volumes:
+  soundsuit-mongo-data:
+  soundsuit-generated:

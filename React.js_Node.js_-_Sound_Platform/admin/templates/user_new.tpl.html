@@ -1,0 +1,93 @@
+<div class="container user-new">
+  <h2>Create new user</h2>
+
+  <div uib-alert
+    class="alert-warning"
+    ng-bind="userNewCtrl.error"
+    ng-if="userNewCtrl.error"></div>
+
+  <form ng-submit="userNewCtrl.create()" name="newUserForm"
+    autocomplete="false"
+  >
+    <div class="form-group">
+      <label for="new-user-email">Email address</label>
+      <input type="email" class="form-control" id="new-user-email" placeholder="Email" required
+        autocomplete="false"
+        name="new-user-email"
+        ng-model="userNewCtrl.user.email"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="new-user-password">Password</label>
+      <input type="password" class="form-control" id="new-user-password" placeholder="Password"
+        required
+        ng-minlength="4"
+        autocomplete="new-password"
+        name="new-user-password"
+        ng-model="userNewCtrl.user.password"
+      >
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="userNewCtrl.user.verified"> Verified (do NOT require email verification)
+      </label>
+    </div>
+
+    <div class="form-group user-new__trial">
+      <label class="col-xs-2">Trial End</label>
+      <div class="col-xs-6 col-sm-2 datepicker-toggle">
+        <input type="text"
+               class="form-control"
+               ng-model="userNewCtrl.user.trial_end"
+               uib-datepicker-popup="dd-MMMM-yyyy"
+               is-open="userNewCtrl.trialDataPickerOpened">
+      </div>
+      <button type="button" class="btn btn-default"
+        ng-click="userNewCtrl.trialDataPickerOpened=!userNewCtrl.trialDataPickerOpened">
+        <i class="icon-calendar"></i>
+      </button>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="userNewCtrl.hasPaidPeriod"> Add paid period
+      </label>
+    </div>
+
+    <div ng-show="userNewCtrl.hasPaidPeriod" class="user-new__paid-period">
+      <div class="form-group">
+        <label class="col-xs-2">From</label>
+        <div class="col-xs-6 col-sm-2 datepicker-toggle">
+          <input type="text"
+                 class="form-control"
+                 ng-model="userNewCtrl.paidPeriod.start"
+                 uib-datepicker-popup="dd-MMMM-yyyy"
+                 is-open="userNewCtrl.startDatePickerOpened">
+        </div>
+        <button type="button" class="btn btn-default" ng-click="userNewCtrl.toggleDatePicker('start')">
+          <i class="icon-calendar"></i>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-2">To</label>
+        <div class="col-xs-6 col-sm-2 datepicker-toggle">
+          <input type="text"
+                 class="form-control"
+                 ng-model="userNewCtrl.paidPeriod.end"
+                 uib-datepicker-popup="dd-MMMM-yyyy"
+                 is-open="userNewCtrl.endDatePickerOpened">
+        </div>
+        <button type="button" class="btn btn-default" ng-click="userNewCtrl.toggleDatePicker('end')">
+          <i class="icon-calendar"></i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary user-new__submit"
+      ng-disabled="newUserForm.$invalid"
+    >Create</button>
+  </form>
+</div>

@@ -1,0 +1,98 @@
+<div class="subscribe__overlay" ng-if="subscribeOverlay.isShown">
+  <div class="container subscribe">
+    <button class="subscribe__close" ng-if="subscribeOverlay.suggestionMode"
+      ng-click="subscribeOverlay.isShown = false;"
+    >
+      <i class="icon-close"></i>
+    </button>
+    <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">
+      <div ng-show="subscribeOverlay.error"
+           ng-bind="subscribeOverlay.error"
+           class="alert alert-danger"
+      ></div>
+
+      <div ng-show="subscribeOverlay.success"
+           ng-bind="subscribeOverlay.success"
+           class="alert alert-success"
+      ></div>
+
+      <div class="form-box__header">
+        <h1>Subscribe</h1>
+
+        <p ng-if="!subscribeOverlay.suggestionMode">Your 30-day free trial is now over.</p>
+
+        <p>
+          Subscribe now to Soundsuit to
+          continue playing great music in your business.<br>
+          Just enter your business info and click submit.
+        </p>
+      </div>
+
+      <div class="subscribe__price-container">
+        <div class="subscribe__price">
+          <div class="subscribe__price-inner">
+            <p class="subscribe__price--big">
+              <sup>€</sup>{{:: subscribeOverlay.price }}
+            </p>
+            <p class="subscribe__price--small">
+              per month | +19% VAT |<br>
+              per {{::subscribeOverlay.IS_MRSSPORTY ? 'club' : 'store' }} | paid annually
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <form
+        ng-submit="subscribeOverlay.submit($event)"
+        name="subscribeOverlay.form"
+        class="subscribe__form"
+      >
+        <div class="form-box__control-group">
+          <input ng-model="subscribeOverlay.data.company" name="company_name" required
+               type="text" placeholder="Company name" class="form-control"
+               autocomplete="org">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="subscribeOverlay.data.street_house" name="street_house" required
+               type="text" placeholder="Street and number" class="form-control"
+               autocomplete="street-address">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="subscribeOverlay.data.zip_city" name="zip_city" required
+               type="text" placeholder="Zip code and city" class="form-control"
+               autocomplete="city">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="subscribeOverlay.data.country" name="country" required
+               type="text" placeholder="Country" class="form-control"
+               autocomplete="country-name">
+        </div>
+
+        <div class="form-box__control-group">
+          <input ng-model="subscribeOverlay.data.phone" name="phone" required
+               type="text" placeholder="Work phone number" class="form-control"
+               autocomplete="tel">
+        </div>
+
+        <div class="form-box__footer">
+          <div class="form-box__control-group form-box__control-group--hcentered">
+            <button ng-disabled="subscribeOverlay.form.$invalid"
+                class="btn btn-lg form-box__btn form-box__btn--full-width form-box__btn--primary"
+            >
+                Submit
+            </button>
+          </div>
+
+          <p class="subscribe__footer-note">
+            You will receive your invoice per email. You will then have the comfort to pay per traditional
+            bank transfer.
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<artice class="user-edit-subscription">
+  <div class="container">
+    <div ng-if="!userEditSubscriptionCtrl.user">
+      Loading user data, please wait...
+    </div>
+
+    <div ng-if="userEditSubscriptionCtrl.user">
+      <div class="form-group">
+        <label for="user-email">Email address</label>
+        <input type="email"
+                class="form-control"
+                id="user-email"
+                placeholder="Email"
+                disabled
+                ng-value="userEditSubscriptionCtrl.user.email"
+        >
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+              disabled
+              ng-model="userEditSubscriptionCtrl.user.verified"
+            >
+            Email Verified
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Created: </label>
+        <span ng-bind="userEditSubscriptionCtrl.user.created | date"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Subscription state:</label>
+        <div ng-switch="userEditSubscriptionCtrl.user.subscriptionState">
+          <div ng-switch-when="ANONYMOUS">
+            anonymous
+          </div>
+          <div ng-switch-when="TRIAL">
+            on trial until <b>{{ userEditSubscriptionCtrl.user.trial_end | date }}</b>
+          </div>
+          <div ng-switch-when="PENDING_SUBSCRIPTION">
+            pending subscription request from <b>{{ userEditSubscriptionCtrl.user.lastSubscription.date | date }}</b>
+          </div>
+          <div ng-switch-when="PAID">
+            paid period until <b>{{ userEditSubscriptionCtrl.user.paid_periods[userEditSubscriptionCtrl.user.paid_periods.length - 1].end | date }}</b>            
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-if="userEditSubscriptionCtrl.user.paid_periods.length">
+        <label>Existing paid periods:</label>
+        <ul>
+          <li ng-repeat="period in userEditSubscriptionCtrl.user.paid_periods">
+            {{:: period.start | date }} - {{:: period.end | date }}
+            (<a ng-click="userEditSubscriptionCtrl.removePaidPeriod(period)">Remove</a>)
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group" ng-if="userEditSubscriptionCtrl.chargebeeSubscriptions">
+        <label>Chargebee subscriptions:</label>
+        <ul ng-if="userEditSubscriptionCtrl.chargebeeSubscriptions">
+          <li ng-repeat="subscr in userEditSubscriptionCtrl.chargebeeSubscriptions">
+            {{:: subscr.current_term_start * 1000 | date }} - {{:: subscr.current_term_end * 1000 | date }}
+            <!-- (<a ng-click="userEditSubscriptionCtrl.removePaidPeriod(period)">Remove</a>) -->
+          </li>
+        </ul>
+      </div>
+
+      <button
+        class="btn btn-primary btn-sm"
+        ng-click="userEditSubscriptionCtrl.openAddPaidPeriodModal()"
+      >
+        Add paid period
+      </button>
+
+      <span ng-if="userEditSubscriptionCtrl.user.subscriptionState==='PENDING_SUBSCRIPTION'">
+        or
+        <button class="btn btn-primary btn-sm" ng-click="userEditSubscriptionCtrl.resetPendingInvoice()">
+          Reset subscription request
+        </button>
+      </span>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,120 @@
+<header class="header">
+  <div class="container-fluid">
+    <div class="col-xs-6">
+      <h1>
+        <a href="/" ng-if="::!headerComponent.ELECTRON_ENV">
+          <i class="icon icon-soundsuit"></i>
+          <span class="text-hide">Soundsuit</span>
+        </a>
+        <a ng-if="::headerComponent.ELECTRON_ENV">
+          <i class="icon icon-soundsuit"></i>
+          <span class="text-hide">Soundsuit</span>
+        </a>
+      </h1>
+    </div>
+
+    <div class="col-xs-6 text-right">
+      <div class="logged_in_user" ng-if="headerComponent.UserService.authData.loggedIn">
+        <div class="dropdown header__user-menu" uib-dropdown>
+          <button class="btn btn-default dropdown-toggle" uib-dropdown-toggle type="button"
+            aria-expanded="true">
+            <span class="user_avatar"><i class="icon-user"></i></span>
+            <span class="user_name" ng-bind="::headerComponent.UserService.authData.user.email"></span>
+          </button>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+            <lh>Account</lh>
+            <li role="presentation">
+              <a ng-click="headerComponent.logout()" role="menuitem" tabindex="-1" href="#">Sign Out</a>
+            </li>
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="#" ng-click="headerComponent.changePassword()">Change Password</a>
+            </li>
+            <li class="divider" ng-if="headerComponent.UserService.authData.user.isOnTrial"></li>
+            <li role="menuitem" ng-if="headerComponent.UserService.authData.user.isOnTrial">
+              <a href="#" ng-click="headerComponent.clickSubscribe()">
+                Free trial: <days-left to="headerComponent.UserService.authData.user.trial_end"></days-left>
+                days left
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dropdown header__trial-dropdown" uib-dropdown auto-close="disabled"
+          ng-if="headerComponent.UserService.authData.user.isOnTrial"
+          is-open="headerComponent.trialDropDownShown"
+        >
+          <div class="header__trial-dropdown__menu" uib-dropdown-menu role="menu">
+            <button class="header__trial-dropdown__close"
+              ng-click="headerComponent.trialDropDownShown = false;"
+            >
+              <i class="icon-close"></i>
+            </button>
+
+            Your free trial will<br> expire in
+            <days-left to="::headerComponent.UserService.authData.user.trial_end"></days-left>
+            days
+
+            <button class="header__trial-dropdown__btn"
+              ng-click="headerComponent.clickSubscribe()"
+            >Subscribe now</button>
+          </div>
+        </div>
+
+        <div class="dropdown header__trial-dropdown" uib-dropdown auto-close="disabled"
+          ng-if="headerComponent.UserService.authData.user.activePaidPeriod"
+          is-open="headerComponent.paidPeriodDropDownShown"
+        >
+          <div class="header__trial-dropdown__menu" uib-dropdown-menu role="menu">
+            <button class="header__trial-dropdown__close"
+              ng-click="headerComponent.paidPeriodDropDownShown = false;"
+            >
+              <i class="icon-close"></i>
+            </button>
+
+            Your subscription will<br> expire in
+            <days-left to="::headerComponent.UserService.authData.user.activePaidPeriod.end"></days-left>
+            days
+
+            <a href="/renew" class="header__trial-dropdown__btn" target="_blank">Renew Subscription</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown header__user-menu" uib-dropdown
+        ng-if="!headerComponent.UserService.authData.loggedIn"
+      >
+        <button class="btn btn-default dropdown-toggle" type="button" aria-expanded="true"
+          ng-click="headerComponent.anonDropDownShown = !headerComponent.anonDropDownShown"
+        >
+          Guest
+        </button>
+
+        <div ng-if="headerComponent.anonDropDownShown" class="anon-panel">
+          <button class="anon-panel__close" ng-click="headerComponent.anonDropDownShown = false;">
+            <i class="icon-close"></i>
+          </button>
+
+          <div>
+            Enjoy the demo!
+            <div>
+              <span class="anon-panel__countdown">
+                <countdown to="::headerComponent.UserService.authData.user.session_end"></countdown> left
+              </span>
+            </div>
+
+            Please register to benefit from a<br>
+            30 day free trial
+
+            <div>
+              <a class="anon-panel__action-btn" href="/register">
+                Start 30 day free trial
+              </a>
+            </div>
+
+            <p class="anon-panel__login">Already an account? <a href="/login">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

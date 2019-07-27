@@ -1,0 +1,102 @@
+<section class="music-id" ng-class="{open: musicId.isOpen}"
+      ng-click="!musicId.isOpen && musicId.toggleSection()">
+  <div class="music-id__trigger" ng-show="musicId.isOpen">
+    <i ng-click="musicId.toggleSection($event)" class="icon icon-angle-left"></i>
+  </div>
+
+  <div class="music-id__main">
+    <section class="music-id__item"
+      ng-controller="BusinessTypeCtrl"
+    >
+      <selectize selected="selected.label"
+                 default-label="Select your business type"
+                 icon-class="icon icon-chair"
+                 direction="down"
+                 tooltip-text="Select your business profile"
+                 on-icon-click="musicId.toggleSection()"
+      >
+        <li class="item" ng-repeat="i in businessTypes"
+            ng-class="{selected: selected.value == i.value, label__inactive: i.disabled}"
+        >
+          <label>
+            <input ng-model="selected.value" type="radio" value="{{ i.value }}"
+                   ng-change="selectionChanged(i)"
+                   ng-disabled="i.disabled"
+            >
+            {{i.label}}
+          </label>
+
+          <span ng-if="i.disabled" class="popup">
+            Coming soon
+          </span>
+        </li>
+      </selectize>
+
+      <h3 class="music-id__item-title">
+        Business<br>Type
+      </h3>
+    </section>
+
+    <section class="music-id__item"
+      ng-controller="CustomerAgeCtrl"
+    >
+      <selectize selected="selectedRanges()"
+                 default-label="No specific customer age"
+                 icon-class="icon icon-user-group"
+                 direction="down"
+                 tooltip-text="Select your customer age"
+                 on-icon-click="musicId.toggleSection()">
+          <li class="item" ng-repeat="i in ranges" ng-class="{selected: i.selected}">
+              <label>
+                  <input ng-model="i.selected" type="checkbox" value="{{i.value}}" ng-change="selectionChanged()">
+                  {{i.label}}
+              </label>
+          </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Customer Group">Customer age<br>Group</h3>
+    </section>
+
+    <section class="music-id__item"
+      ng-controller="MusicFlavorCtrl"
+    >
+      <selectize selected="selectedFlavors()"
+                 default-label="Not specified"
+                 icon-class="icon-test-tube"
+                 direction="up"
+                 tooltip-text="Select your music flavor"
+                 on-icon-click="musicId.toggleSection()"
+                 ng-disabled="user.business_type === 'fintess_studio_max'"
+                 >
+          <li class="item" ng-repeat="i in flavors" ng-class="{selected: i.selected && !i.inactive, label__inactive: i.disabled || i.inactive}">
+              <label ng-class="{}">
+                  <input ng-disabled="i.disabled || i.inactive" ng-model="i.selected" type="checkbox" value="{{i.value}}" ng-change="selectionChanged()">
+                  {{i.label}}
+              </label>
+              <span ng-if="i.disabled" class="popup">
+                  Coming soon
+              </span>
+          </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Store Interior Design">Store<br>Interior Design</h3>
+    </section>
+
+    <section class="music-id__item"
+      ng-controller="MusicStyleCtrl"
+    >
+      <selectize selected="selected.label"
+                 default-label="Select your music style"
+                 icon-class="icon-note-beamed"
+                 direction="up"
+                 tooltip-text="Select your music style"
+                 on-icon-click="musicId.toggleSection()">
+          <li class="item" ng-repeat="i in styles" ng-class="{selected: selected.value == i.value}">
+              <label>
+                  <input ng-model="selected.value" type="radio" value="{{ i.value }}" ng-change="selectionChanged(i)">
+                  {{i.label}}
+              </label>
+          </li>
+      </selectize>
+      <h3 class="music-id__item-title" title="Music Style">Music<br>Style</h3>
+    </section>
+  </div>
+</section>

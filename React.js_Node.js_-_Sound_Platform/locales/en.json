@@ -1,0 +1,16 @@
+{
+	"register.title": "Try Soundsuit Free For 30 Days",
+	"register.sentence1": "Thanks for listening to Soundsuit!",
+	"register.sentence2": "Create an account to enjoy a 30-day free trial.",
+	"register.sentence3": "No credit card required, no obligation to purchase.",
+	"register.form.company_name": "Company name",
+	"register.form.email": "E-mail address",
+	"register.form.password": "Password",
+	"register.info_agreement": "I agree to receive information such as product updates, tutorials, discounts, customer feedback surveys, etc.",
+	"register.toc": "Terms & Conditions",
+	"register.privacy_policy": "privacy policy",
+	"register.toc_agreement": "I agree to Soundsuit's {{{toc}}}, and I have read the Soundsuit's {{{pp}}}.",
+	"register.form.submit": "Create free account",
+	"register.form.first_name": "First Name",
+	"register.form.last_name": "Family Name"
+}

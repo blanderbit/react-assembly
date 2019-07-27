@@ -1,0 +1,279 @@
+<div class="container">
+  <div class="form-group">
+    <a class="btn btn-danger"
+       ng-if="::!userCoreCtrl.IS_REGULAR"
+       ng-click="userCoreCtrl.convertToRegular()">Convert User to Regular</a>
+
+    <a class="btn btn-danger"
+       ng-if="::!userCoreCtrl.IS_MRSSPORTY"
+       ng-click="userCoreCtrl.convertToSportySubclass('Mrssporty')">Convert User to Mrssporty</a>
+
+    <a class="btn btn-danger"
+       ng-if="::!userCoreCtrl.IS_FITBOX"
+       ng-click="userCoreCtrl.convertToSportySubclass('Fitbox')">Convert User to Fitbox</a>
+  </div>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Email</th>
+        <td>
+          {{userCoreCtrl.user.email}}
+          <span class="label label-info" ng-if="::userCoreCtrl.IS_MRSSPORTY">
+            Mrssporty
+          </span>
+          <span class="label label-info" ng-if="::userCoreCtrl.IS_FITBOX">
+            Fitbox
+          </span>
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.user.customer_number">
+        <th>Customer Number</th>
+        <td>
+          {{ ::userCoreCtrl.user.customer_number }}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Created</th>
+        <td>
+          {{userCoreCtrl.user.created | date}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Trial end</th>
+        <td>
+          {{::(userCoreCtrl.user.trial_end | date)}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Verified</th>
+        <td>
+          {{userCoreCtrl.user.verified ? 'Yes' : 'No'}}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.IS_REGULAR">
+        <th>Business Type</th>
+        <td>
+          {{userCoreCtrl.user.business_type}}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.IS_REGULAR">
+        <th>Music Flavors</th>
+        <td>
+          {{userCoreCtrl.user.music_flavors.join(', ')}}
+        </td>
+      </tr>
+
+      <tr ng-if="::(userCoreCtrl.IS_MRSSPORTY || userCoreCtrl.IS_FITBOX)">
+        <th>Workout Type</th>
+        <td>
+          {{ :: userCoreCtrl.user.workout_type | workoutType }}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.IS_MRSSPORTY">
+        <th>Switching Voice</th>
+        <td>
+          {{ :: userCoreCtrl.user.changing_voice | changingVoice }}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Customer Age</th>
+        <td>
+          {{userCoreCtrl.user.customer_age | customerAge}}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.IS_REGULAR">
+        <th>Music Style</th>
+        <td>
+          {{userCoreCtrl.user.music_style | musicStyle}}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.user.company_name">
+        <th>Company Name</th>
+        <td>
+          {{ ::userCoreCtrl.user.company_name }}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.user.first_name">
+        <th>First Name</th>
+        <td>
+          {{ ::userCoreCtrl.user.first_name }}
+        </td>
+      </tr>
+
+      <tr ng-if="::userCoreCtrl.user.last_name">
+        <th>Family Name</th>
+        <td>
+          {{ ::userCoreCtrl.user.last_name }}
+        </td>
+      </tr>
+
+
+      <tr ng-if="userCoreCtrl.user.lastSubscription">
+        <th>Last subscription</th>
+        <td>
+          <a ng-click="userCoreCtrl.showSubDetails=!userCoreCtrl.showSubDetails">
+            {{userCoreCtrl.user.lastSubscription.date | date}}
+          </a>
+        </td>
+      </tr>
+
+      <tr ng-if="userCoreCtrl.user.paid_periods.length">
+        <th>Paid periods</th>
+        <td>
+          <ul>
+            <li ng-repeat="period in userCoreCtrl.user.paid_periods">
+              {{ period.start | date }} till {{ period.end | date }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+  <table class="table" ng-if="userCoreCtrl.user.lastSubscription"
+         ng-show="userCoreCtrl.showSubDetails">
+    <tbody>
+      <tr>
+        <th>Company</th>
+        <td>
+          {{userCoreCtrl.user.lastSubscription.company}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Street and House number</th>
+        <td>
+          {{userCoreCtrl.user.lastSubscription.street_house}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Zip and City</th>
+        <td>
+          {{userCoreCtrl.user.lastSubscription.zip_city}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Country</th>
+        <td>
+          {{userCoreCtrl.user.lastSubscription.country}}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Professional phone number</th>
+        <td>
+          {{userCoreCtrl.user.lastSubscription.phone}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Played songs
+    <small ng-if="userCoreCtrl.events.length">showing {{userCoreCtrl.events.length}}</small>
+  </h3>
+
+  <section>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>From</label>
+        <input type="text"
+               class="form-control"
+               ng-model="userCoreCtrl.request.startDate"
+               uib-datepicker-popup="dd-MMMM-yyyy"
+               is-open="userCoreCtrl.startDatePickerOpened">
+      </div>
+      <button type="button" class="btn btn-default" ng-click="userCoreCtrl.toggleDatePicker('start')">
+        <i class="icon-calendar"></i>
+      </button>
+
+      <div class="form-group">
+        <label>to</label>
+        <input type="text"
+               class="form-control"
+               ng-model="userCoreCtrl.request.endDate"
+               uib-datepicker-popup="dd-MMMM-yyyy"
+               is-open="userCoreCtrl.endDatePickerOpened">
+      </div>
+      <button type="button" class="btn btn-default" ng-click="userCoreCtrl.toggleDatePicker('end')">
+        <i class="icon-calendar"></i>
+      </button>
+    </form>
+
+    <form class="form-inline played-with">
+      <label>Played with:</label>
+      <div class="btn-group">
+        <label class="btn btn-warning" ng-model="userCoreCtrl.request.client.stream" uib-btn-checkbox>Stream</label>
+        <label class="btn btn-warning" ng-model="userCoreCtrl.request.client.web" uib-btn-checkbox>Web Application</label>
+        <label class="btn btn-warning" ng-model="userCoreCtrl.request.client.sonos" uib-btn-checkbox>SONOS</label>
+      </div>
+    </form>
+
+    <form class="form-inline ctrl-buttons">
+      <button type="button" class="btn btn-primary"
+              ng-if="userCoreCtrl.user"
+              ng-click="userCoreCtrl.showEvents()">
+              Show
+      </button>
+
+      <button type="button" class="btn btn-primary"
+              ng-if="userCoreCtrl.user"
+              ng-click="userCoreCtrl.download('csv')">
+              Download as CSV
+      </button>
+
+      <button type="button" class="btn btn-primary"
+              ng-if="userCoreCtrl.user"
+              ng-click="userCoreCtrl.download('xlsx')">
+              Download as XLSX
+        <i class="icon-file-excel"></i>
+      </button>
+    </form>
+
+  </section>
+
+  <h4 ng-hide="userCoreCtrl.events.length" ng-if="userCoreCtrl.searchPerformed && !userCoreCtrl.isLoading">
+    No results
+  </h4>
+
+  <p ng-show="userCoreCtrl.isLoading">
+    Loading...
+  </p>
+
+  <table class="table table-bordered played-tracks" ng-show="userCoreCtrl.events.length">
+  <thead>
+    <tr>
+      <th class="time">Time</th>
+      <th class="date">Date</th>
+      <th class="title">Track Name</th>
+      <th class="from">Track From</th>
+      <th class="client">Played with</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="event in userCoreCtrl.events">
+      <td>{{event.date | date : 'HH:mm:ss'}}</td>
+      <td>{{event.date | date}}</td>
+      <td>
+        <a ng-click="userCoreCtrl.openEditModal(event)">{{event.trackName}}</a>
+      </td>
+      <td>{{event.trackType | trackType}}</td>
+      <td>{{event.client}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>

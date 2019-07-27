@@ -1,0 +1,48 @@
+/**
+* Some good defaults for angular behavior
+*/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/**
+* ngAnimate ng-shows
+*/
+
+.ng-hide-add, .ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.no-animate {
+  &.ng-hide-add, &.ng-hide-remove {
+    transition: none;
+    display:block!important;
+  }
+}
+
+.ng-hide-add.ng-hide-add-active,
+.ng-hide-remove {
+  opacity:0;
+}
+
+.ng-hide-add,
+.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+
+/**
+* ngAnimate ng-repeats
+*/
+
+.ng-enter {
+	opacity: 0;
+}
+
+.ng-enter-active {
+	opacity: 1;
+}

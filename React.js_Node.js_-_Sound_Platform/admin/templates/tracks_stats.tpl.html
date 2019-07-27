@@ -1,0 +1,112 @@
+<div class="container">
+  <h3>Played tracks statistics</h3>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-2 control-label">From</label>
+      <div class="col-xs-6 col-sm-2 datepicker-toggle">
+        <input type="text"
+               class="form-control"
+               ng-model="tracksStatsCtrl.request.startDate"
+               uib-datepicker-popup="dd-MMMM-yyyy"
+               is-open="tracksStatsCtrl.startDatePickerOpened">
+      </div>
+      <button type="button" class="btn btn-default" ng-click="tracksStatsCtrl.toggleDatePicker('start')">
+        <i class="icon-calendar"></i>
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-2 control-label">to</label>
+      <div class="col-xs-6 col-sm-2 datepicker-toggle">
+        <input type="text"
+               class="form-control"
+               ng-model="tracksStatsCtrl.request.endDate"
+               uib-datepicker-popup="dd-MMMM-yyyy"
+               is-open="tracksStatsCtrl.endDatePickerOpened">
+      </div>
+      <button type="button" class="btn btn-default" ng-click="tracksStatsCtrl.toggleDatePicker('end')">
+        <i class="icon-calendar"></i>
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-2 control-label">Played with</label>
+      <div class="btn-group col-xs-10">
+        <label class="btn btn-warning" ng-model="tracksStatsCtrl.request.client.stream" uib-btn-checkbox>Stream</label>
+        <label class="btn btn-warning" ng-model="tracksStatsCtrl.request.client.web" uib-btn-checkbox>Web Application</label>
+        <label class="btn btn-warning" ng-model="tracksStatsCtrl.request.client.sonos" uib-btn-checkbox>SONOS</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-2 control-label">Action</label>
+      <div class="btn-group col-xs-10">
+        <button type="button" class="btn btn-primary"
+                ng-click="tracksStatsCtrl.show()"
+                ng-disabled="tracksStatsCtrl.isLoading">
+                Show
+        </button>
+
+        <a class="btn btn-primary"
+           ng-href="{{tracksStatsCtrl.downloadLink('csv')}}"
+           ng-disabled="tracksStatsCtrl.isLoading">
+          Download as CSV
+        </a>
+
+        <a class="btn btn-primary"
+           ng-href="{{tracksStatsCtrl.downloadLink('xlsx')}}"
+           ng-disabled="tracksStatsCtrl.isLoading">
+          Download as XLSX
+          <i class="icon-file-excel"></i>
+        </a>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-bordered played-tracks-stats" ng-show="tracksStatsCtrl.events.length">
+  <thead>
+    <tr>
+      <th ng-click="tracksStatsCtrl.toggleSort('artistName')"
+          class="sortable">
+        Artist
+        <i ng-class="tracksStatsCtrl.request.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+           ng-if="tracksStatsCtrl.request.sortKey === 'artistName'">
+        </i>
+      </th>
+      <th ng-click="tracksStatsCtrl.toggleSort('title')"
+          class="sortable">
+        Title
+        <i ng-class="tracksStatsCtrl.request.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+           ng-if="tracksStatsCtrl.request.sortKey === 'title'">
+        </i>
+      </th>
+      <th>
+        Duration, s
+      </th>
+      <th ng-click="tracksStatsCtrl.toggleSort('num')"
+          class="sortable count-col">
+        Play count
+        <i ng-class="tracksStatsCtrl.request.sortDirection === -1 ? 'icon-angle-up' : 'icon-angle-down'"
+           ng-if="tracksStatsCtrl.request.sortKey === 'num'">
+        </i>
+      </th>
+      <th>
+        ISRC
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="event in tracksStatsCtrl.events |
+        orderBy : tracksStatsCtrl.request.sortKey : tracksStatsCtrl.request.sortDirection === -1">
+      <td>{{::event.artistName}}</td>
+      <td>{{::event.title}}</td>
+      <td>{{::event.duration | number:0}}</td>
+      <td class="count-col">{{::event.num | number}}</td>
+      <td>{{::event.isrc}}</td>
+    </tr>
+  </tbody>
+  </table>
+
+</div>
+

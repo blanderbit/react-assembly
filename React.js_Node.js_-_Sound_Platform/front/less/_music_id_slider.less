@@ -1,0 +1,165 @@
+.music-id {
+  background: @brand-background;
+  width: 5vw;
+  position: absolute;
+  top: 9vh;
+  left: 0;
+  height: 70vh;
+  z-index: 20;
+  // overflow: hidden;
+  cursor: pointer;
+
+  @media (max-width: 991px) {
+    display: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item-title {
+    font-size: 1.85vh;
+    color: @brand-primary;
+    text-overflow: ellipsis;
+    line-height: 1.3em;
+    vertical-align: middle;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 10px;
+  }
+
+  .transition(width, ease-out, 0.1s);
+
+  &.open {
+    width: 30vw;
+    overflow: hidden;
+    cursor: default;
+
+    .selectize__icon {
+      color: white;
+      border-color: white;
+      float: left;
+      margin-left: 1vw;
+      .info-box {
+        display: none;
+      }
+    }
+    .music-id__trigger {
+      width: 3vw;
+      right: 0;
+
+      .icon {
+        width: 100%;
+        text-align: center;
+        padding: 1vh 0;
+      }
+    }
+
+    .selectize {
+      width: 70%;
+    }
+
+    .selectize__item,
+    .selectize__arrow,
+    .music-id__item-title {
+      display: block;
+    }
+
+    .music-id__main {
+      max-width: none;
+    }
+
+    .setting_section__container {
+      justify-content: space-between;
+    }
+  }
+
+  .selectize__item,
+  .selectize__arrow,
+  .music-id__item-title {
+    display: none;
+  }
+
+  .music-id__trigger {
+    position: absolute;
+    height: 100%;
+    color: @brand-primary;
+
+    .icon {
+      .vertical-align;
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      font-size: 5vh;
+      right: 0.5vw;
+    }
+
+  }
+
+  .music-id__trigger__caption {
+    .vertical-align;
+    .transition(none);
+    font-size: 1vw;
+    position: absolute;
+    text-align: center;
+    left: 1vw;
+  }
+
+  &__main {
+    .transition(none);
+    height: 100%;
+    width: 25vw;
+    max-width: 100%;
+    padding: 2vh 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__save-container {
+    text-align: center;
+    .transition(none);
+
+    button {
+      overflow: hidden;
+      background-color: @brand-primary;
+      color: white;
+      border: none;
+      padding: 10px 40px;
+      width: 60%;
+      text-transform: uppercase;
+      font-weight: bolder;
+      border-radius: 5px;
+      margin-bottom: 5vh;
+      .transition(background-color, ease, 0.2s);
+
+      &:not([disabled]) {
+        &:hover {
+          background-color: darken(@brand-primary, 5%);
+        }
+
+        &:active {
+          background-color: darken(@brand-primary, 10%);
+        }
+      }
+
+      &[disabled] {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+.main-content {
+  width: 95vw;
+  left: 5vw;
+  position: relative;
+
+  @media (max-width: 991px) {
+    width: 100vw;
+    position: static;
+  }
+}
+

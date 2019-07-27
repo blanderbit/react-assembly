@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<stringtables xmlns="http://sonos.com/sonosapi">
+    <stringtable rev="1" xml:lang="en-US">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="da-DK">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="de-DE">
+        <string stringId="ServicePromo">Soundsuit – maßgeschneideiderte Musik für Ihren Laden oder Restaurant. Legal und mühelos. Richten Sie Ihr Konto in Sekunden ein. Und los!</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="es-ES">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="fr-FR">
+        <string stringId="ServicePromo">Soundsuit – Musique sur-mesure pour boutiques et restaurants. Légal et sans effort. Configurez votre compte en quelques secondes. Et play!</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="it-IT">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="ja-JP">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="nb-NO">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="nl-NL">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="pt-BR">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="sv-SE">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+    <stringtable rev="1" xml:lang="zh-CN">
+        <string stringId="ServicePromo">Soundsuit - tailored music for your store or restaurant. Legal and effortless. Set up your account in seconds. And start playing.</string>
+        <string stringId="ADD_TRACK_TO_YOUR_MUSIC">Save to Your Music</string>
+        <string stringId="SUCCESS_ADD">Saved to Your Music</string>
+        <string stringId="FAILURE_ADD">This track could not be saved to Your Music. Please try again.</string>
+    </stringtable>
+</stringtables>

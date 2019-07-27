@@ -1,0 +1,27 @@
+<article class="mood-controls">
+  <div class="no-select circle mood_up"
+    ng-class="{
+      'disabled':  moodControls.current >= moodControls.MOOD_HIGH || moodControls.isDisabled()
+    }"
+  >
+    <a ng-click="moodControls.updateBy(1)" class="circle">
+      <i class="icon icon-angle-up"></i>
+      <span class="moodtext">mood<br> up</span>
+    </a>
+  </div>
+
+  <div class="no-select circle mood_indicator">
+    <span>{{ (moodControls.isDisabled() ? 0 : moodControls.current) | mood}}</span>
+  </div>
+
+  <div class="no-select circle mood_down"
+    ng-class="{
+      'disabled': moodControls.current <= moodControls.MOOD_LOW || moodControls.isDisabled()
+    }"
+  >
+    <a ng-click="moodControls.updateBy(-1)" class="circle">
+      <i class="icon icon-angle-down"></i>
+      <span class="moodtext">mood<br> down</span>
+    </a>
+  </div>
+</article>

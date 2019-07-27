@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Presentation>
+  <!-- BrowseOptions allow for an override of standard
+  browse operations in the controller -->
+  <BrowseOptions PageSize="10" />
+  <PresentationMap type="InfoView">
+    <Match>
+      <MenuItemOverrides>
+        <MenuItem MenuItem="AddTrackToFavorites"
+                  StringId="ADD_TRACK_TO_YOUR_MUSIC"
+                  FailureStringId="FAILURE_ADD"
+                  SuccessStringId="SUCCESS_ADD" />
+      </MenuItemOverrides>
+    </Match>
+  </PresentationMap>
+</Presentation>

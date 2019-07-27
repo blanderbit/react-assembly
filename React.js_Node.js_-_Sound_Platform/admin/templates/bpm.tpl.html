@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>BPM corridors</h2>
+
+  <div ng-repeat="table in bpmCtrl.bpmTables">
+    <h3>{{table.business_type}}</h3>
+    <a ng-click="bpmCtrl.reset(table)" ng-if="!table.default">
+      Reset to defaults
+    </a>
+    <table class="table bpm-table">
+      <thead>
+        <tr>
+          <th class="index">Period</th>
+          <th class="base">Base</th>
+          <th class="low">Low</th>
+          <th class="high">High</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="slot in table.bpmCorridor">
+          <td>
+            {{bpmCtrl.TIME_SLOTS[$index]}}
+          </td>
+          <td>
+            <span editable-text="slot.base" onaftersave="bpmCtrl.saveTable(table)">
+              {{slot.base}}
+            </span>
+          </td>
+          <td>
+            <span editable-text="slot.low" onaftersave="bpmCtrl.saveTable(table)">
+              {{slot.low}}
+            </span>
+          </td>
+          <td>
+            <span editable-text="slot.high" onaftersave="bpmCtrl.saveTable(table)">
+              {{slot.high}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

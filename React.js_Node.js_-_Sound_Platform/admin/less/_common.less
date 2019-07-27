@@ -1,0 +1,31 @@
+.table {
+  table-layout: fixed;
+
+  td form {
+    display: inline;
+  }
+}
+
+.search-container {
+  margin-bottom: 20px;
+
+  input {
+    max-width: 400px;
+    min-width: 300px;
+    display: inline-block;
+  }
+}
+
+.form-control {
+  &--sm {
+    max-width: 170px;
+  }
+
+  &--md {
+    max-width: 370px;
+  }
+}
+
+input.ng-dirty.ng-invalid {
+  border: red 1px solid;
+}

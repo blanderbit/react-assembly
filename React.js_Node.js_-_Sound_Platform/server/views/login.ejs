@@ -1,0 +1,44 @@
+<% layout('layout/basic') -%>
+
+<%- partial('partials/not_logged_in_header') -%>
+
+<div class="overlay">
+    <div class="container form-box--vcentered">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" ng-controller="LoginCtl">
+                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                <div ng-show="success" class="alert alert-success">{{success}}</div>
+
+                <%- partial('partials/flash') -%>
+
+                <header class="form-box__header">
+                    <i class="icon icon-soundsuit"></i>
+                </header>
+
+                <form action="" name="form">
+                    <div class="form-box__control-group" style="">
+                        <input ng-model="user.email" required type="email" placeholder="Email address" class="form-control">
+                    </div>
+                    <div class="form-box__control-group">
+                        <input ng-model="user.password" required type="password" placeholder="Password" class="form-control">
+                        <p class="right-aligned">
+                            <a class="primary_blue" href="/forgot" tabindex="-1">Forgot your password?</a>
+                        </p>
+                    </div>
+                    <div class="form-box__control-group form-box__control-group--hcentered">
+                        <button ng-disabled="form.$invalid"
+                                ng-click="ok(user)"
+                                class="btn btn-lg btn-default form-box__btn"
+                                type="button">
+                                    Log in
+                        </button>
+                    </div>
+                </form>
+                <div class="form-box__footer">
+                    <p>New here? Don't have an account yet?</p>
+                    <a href="/register" class="btn btn-lg form-btn primary_blue form-box__btn form-box__btn--small form-box__btn--empty">Sign up for free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

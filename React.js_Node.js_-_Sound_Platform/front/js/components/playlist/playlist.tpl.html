@@ -1,0 +1,25 @@
+<ul class="albums">
+  <li class="animate album" ng-repeat="song in playlist.paddedQueue track by song.uniqueId">
+    <div class="album_cover_img"
+      ng-class="{
+        'album_cover_img--active': song === playlist.queue[0]
+      }"
+      back-img="song.coverImage"
+    >
+    </div>
+
+    <div class="like-indicator" ng-if="song.isLiked">
+      <i class="icon-heart"></i>
+    </div>
+
+    <aside class="album_box" ng-if="::(!song.dummy)">
+      <div class="like" ng-click="playlist.toggleLike({ track: song })">
+        <i ng-class="song.isLiked ? 'icon-heart' : 'icon-heart-empty'"></i>
+      </div>
+      <div class="album_info">
+        <p class="uppercased">{{ ::song.artistName }}</p>
+        <p>{{ ::song.title }}</p>
+      </div>
+    </aside>
+  </li>
+</ul>

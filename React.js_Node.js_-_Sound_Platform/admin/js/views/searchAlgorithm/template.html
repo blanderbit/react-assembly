@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Search algorithm settings</h2>
+
+  <div uib-alert
+    class="alert-warning"
+    ng-bind="searchAlgorithm.error"
+    ng-if="searchAlgorithm.error"></div>
+
+  <form ng-submit="searchAlgorithm.save()" name="searchAlgorithm.form" class="col-md-3"
+    ng-if="searchAlgorithm.preset"
+  >
+    <div class="form-group">
+      <label for="artist-norepeat">Artist no repeat interval, min</label>
+      <input type="number" class="form-control col-md-4" id="artist-norepeat" required
+        name="artist-norepeat"
+        ng-min="0"
+        ng-model="searchAlgorithm.preset.artist_norepeat"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="track-norepeat">Track no repeat interval, min</label>
+
+      <input type="number" class="form-control" id="track-norepeat" required
+        name="track-norepeat"
+        ng-min="0"
+        ng-model="searchAlgorithm.preset.track_norepeat"
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary user-new__submit"
+      ng-disabled="searchAlgorithm.form.$invalid || searchAlgorithm.form.$pristine">
+      Save
+    </button>
+  </form>
+</div>

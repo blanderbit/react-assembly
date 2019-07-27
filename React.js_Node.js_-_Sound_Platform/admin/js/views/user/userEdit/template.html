@@ -1,0 +1,189 @@
+<artice class="user-edit">
+  <div class="container">
+    <div ng-if="!userEditCtrl.user">
+      Loading user data, please wait...
+    </div>
+
+    <div ng-if="userEditCtrl.user">
+      <form name="userEditCtrl.form" ng-submit="userEditCtrl.save()">
+        <div>
+          <span class="label label-info" ng-if="::userEditCtrl.IS_MRSSPORTY">
+            Mrssporty
+          </span>
+          <span class="label label-info" ng-if="::userEditCtrl.IS_FITBOX">
+            Fitbox
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="user-email">Email address</label>
+          <input type="email"
+                 class="form-control"
+                 id="user-email"
+                 placeholder="Email"
+                 disabled
+                 ng-value="userEditCtrl.user.email"
+          >
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"
+                ng-model="userEditCtrl.user.verified"
+              >
+              Email Verified
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Created: </label>
+          <span ng-bind="userEditCtrl.user.created | date"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="customer-number">Customer Number</label>
+          <input type="text"
+                 class="form-control form-control--sm"
+                 id="customer-number"
+                 ng-model="userEditCtrl.user.customer_number"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="company-name">Company Name</label>
+          <input type="text"
+                 class="form-control form-control--md"
+                 id="company-name"
+                 ng-model="userEditCtrl.user.company_name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Trial Ends:</label>
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 datepicker-toggle">
+              <input type="text"
+                     class="form-control"
+                     ng-model="userEditCtrl.user.trial_end"
+                     uib-datepicker-popup="dd-MMMM-yyyy"
+                     is-open="userEditCtrl.trialEndDatepickerOpened">
+            </div>
+            <button type="button" class="btn btn-default"
+              ng-click="userEditCtrl.trialEndDatepickerOpened=!userEditCtrl.trialEndDatepickerOpened">
+              <i class="icon-calendar"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" ng-if="::userEditCtrl.IS_REGULAR">
+          <label for="user-business-type">Business type</label>
+          <select
+            class="form-control form-control--md"
+            id="user-business-type"
+            ng-model="userEditCtrl.user.business_type"
+          >
+            <option
+              ng-repeat="type in ::userEditCtrl.businessTypes"
+              value="{{::type.value}}"
+              ng-bind="::type.label"
+            >
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group" ng-if="::userEditCtrl.IS_REGULAR">
+          <label for="user-music-flavor">Music flavor</label>
+
+          <div>
+            <label ng-repeat="flavor in ::userEditCtrl.musicFlavors"
+                   ng-model="flavor.selected"
+                   class="btn btn-warning"
+                   uib-btn-checkbox
+                   ng-bind="::flavor.value"
+                   ng-change="userEditCtrl.updateMusicFlavors()"
+                   ng-disabled="::flavor.disabled"
+            >
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" ng-if="::(userEditCtrl.IS_MRSSPORTY || userEditCtrl.IS_FITBOX)">
+          <label for="user-workout-type">Workout Type</label>
+
+          <select
+            class="form-control form-control--md"
+            id="user-workout-type"
+            ng-model="userEditCtrl.user.workout_type"
+          >
+            <option
+              ng-repeat="type in ::userEditCtrl.workoutTypes"
+              value="{{::type.value}}"
+              ng-bind="::type.label"
+            >
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group" ng-if="::userEditCtrl.IS_MRSSPORTY">
+          <label for="user-workout-type">Switching voice</label>
+
+          <select
+            class="form-control form-control--md"
+            id="user-workout-type"
+            ng-model="userEditCtrl.user.changing_voice"
+            ng-options="type.value as type.label for type in ::userEditCtrl.MRSSPORTY_SWITCHING_VOICES"
+          ></select>
+        </div>
+
+        <div class="form-group">
+          <label for="user-music-flavor">Customer age</label>
+
+          <div>
+            <label ng-repeat="age in ::userEditCtrl.customerAges"
+                   ng-model="age.selected"
+                   class="btn btn-warning"
+                   uib-btn-checkbox
+                   ng-bind="::age.value"
+                   ng-change="userEditCtrl.updateCustomerAges()"
+                   ng-disabled="::age.disabled"
+            >
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" ng-if="::userEditCtrl.IS_REGULAR">
+          <label for="user-music-style">Music style</label>
+          <select
+            class="form-control form-control--md"
+            id="user-music-style"
+            ng-model="userEditCtrl.user.music_style"
+          >
+            <option
+              ng-repeat="type in ::userEditCtrl.musicStyles"
+              value="{{::type.value}}"
+              ng-bind="::type.label"
+            >
+            </option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg"
+          ng-disabled="userEditCtrl.isSaving"
+        >Save User
+        </button>
+
+        <button
+          role="button"
+          class="btn btn-warning user-edit__reset"
+          ng-if="userEditCtrl.form.$dirty"
+          ng-click="userEditCtrl.reloadUser()"
+        >Reset changes
+        </button>
+      </form>
+    </div>
+  </div>
+</article>

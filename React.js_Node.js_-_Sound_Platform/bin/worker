@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+/**
+ * Command-line interface to capture meta-data from MP3s in S3 from various providers
+ */
+
+var fs = require('fs');
+var path = require('path');
+
+// load config
+var filePath = path.join(__dirname, '..', '.env');
+if (process.env.NODE_ENV === 'local' && fs.existsSync(filePath)) {
+  require('node-env-file')(filePath);
+}
+
+var worker = require('../server/worker');
+
+worker();

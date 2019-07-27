@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+// load config
+const filePath = path.join(__dirname, '..', '.env');
+if (process.env.NODE_ENV === 'local' && fs.existsSync(filePath)) {
+  require('node-env-file')(filePath);
+}
+
+const pitcher = require('../server/bpm_pitcher');
+
+pitcher();

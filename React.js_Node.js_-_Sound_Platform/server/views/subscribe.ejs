@@ -1,0 +1,50 @@
+<% layout('layout/basic') -%>
+
+<header class="register">
+  <nav class="col-xs-2">
+    <i class="icon icon-menu"></i>
+  </nav>
+  <div class="col-xs-8 logo-container">
+    <h1>
+      <a href="/">
+        <i class="icon icon-soundsuit"></i>
+        <span class="text-hide">Soundsuit</span>
+      </a>
+    </h1>
+  </div>
+</header>
+
+<div class="container subscribe">
+  <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2" ng-controller="SubscribeCtl">
+    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    <div ng-show="success" class="alert alert-success">{{success}}</div>
+
+    <div class="form-box__header">
+      <h1>Subscribe</h1>
+
+      <p>Your 30-day free trial is now over.</p>
+
+      <p>
+        Subscribe now to Soundsuit to
+        continue playing great music in your business.<br>
+        Just enter your business info and click submit.
+      </p>
+    </div>
+
+    <div class="subscribe__price-container">
+      <div class="subscribe__price">
+        <div class="subscribe__price-inner">
+          <p class="subscribe__price--big">
+            <sup>€</sup><%= price %>
+          </p>
+          <p class="subscribe__price--small">
+            per month | +19% VAT |<br>
+            per <%= entity %> | paid annually
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <%- partial('subscribe/form') -%>
+  </div>
+</div>

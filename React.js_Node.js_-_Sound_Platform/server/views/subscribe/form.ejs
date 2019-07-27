@@ -1,0 +1,45 @@
+<form action="" name="form" ng-submit="ok($event)" class="subscribe__form">
+  <div class="form-box__control-group">
+    <input ng-model="data.company" name="company_name" required
+          type="text" placeholder="Company name" class="form-control"
+          autocomplete="org">
+  </div>
+
+  <div class="form-box__control-group">
+    <input ng-model="data.street_house" name="street_house" required
+          type="text" placeholder="Street and number" class="form-control"
+          autocomplete="street-address">
+  </div>
+
+  <div class="form-box__control-group">
+    <input ng-model="data.zip_city" name="zip_city" required
+          type="text" placeholder="Zip code and city" class="form-control"
+          autocomplete="city">
+  </div>
+
+  <div class="form-box__control-group">
+    <input ng-model="data.country" name="country" required
+          type="text" placeholder="Country" class="form-control"
+          autocomplete="country-name">
+  </div>
+
+  <div class="form-box__control-group">
+    <input ng-model="data.phone" name="phone" required
+          type="text" placeholder="Work phone number" class="form-control"
+          autocomplete="tel">
+  </div>
+
+  <div class="form-box__footer">
+    <div class="form-box__control-group form-box__control-group--hcentered">
+      <button ng-disabled="form.$invalid"
+          class="btn btn-lg form-box__btn form-box__btn--full-width form-box__btn--primary">
+          Submit
+      </button>
+    </div>
+
+    <p class="subscribe__footer-note">
+      You will receive your invoice per email. You will then have the comfort to pay per traditional
+      bank transfer.
+    </p>
+  </div>
+</form>

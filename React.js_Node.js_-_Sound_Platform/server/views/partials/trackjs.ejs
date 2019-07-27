@@ -1,0 +1,4 @@
+<% if (env === 'production') { %>
+  <script type="text/javascript">window._trackJs = { token: "<%= tracksJsToken %>" };</script>
+  <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+<% } %>

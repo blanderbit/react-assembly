@@ -1,0 +1,27 @@
+<% layout('layout/basic') -%>
+
+<%- partial('partials/not_logged_in_header') -%>
+
+<div class="overlay">
+	<div class="container form-box--vcentered">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+				<%- partial('partials/flash') -%>
+
+				<form action="/forgot" method="post" name="form">
+					<div class="form-box__header">
+						<h1 class="primary_blue uppercase">Forgot password</h1>
+						<p>Enter your email address, and we will send you a reset-password link.</p>
+					</div>
+					<div class="form-box__control-group form-box__control-group--hcentered">
+						<input name="email" required type="email" placeholder="Email address" class="form-control">
+					</div>
+					<div class="form-box__control-group form-box__control-group--hcentered">
+						<button class="btn btn-lg btn-default form-box__btn" type="submit">Send</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

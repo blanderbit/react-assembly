@@ -1,0 +1,138 @@
+<header-component></header-component>
+
+<subscribe-overlay></subscribe-overlay>
+
+<music-id></music-id>
+
+<section class="main-content">
+  <section id="player-wrapper">
+    <div class="background"
+         ng-style="{
+          'background-image': 'url(&quot;' +
+            ((playerMain.current && playerMain.current.coverImage) ? playerMain.current.coverImage :
+              playerMain.DEFAULT_COVER_IMAGE) +
+            '&quot;)'
+         }">
+         <div class="overlay"></div>
+    </div>
+
+    <div class="volume-skip">
+        <div class="volume-skip-inner">
+            <div class="volume-select">
+                <div volume-slider>
+                    <input type="range"
+                           orientation="horizontal"
+                           step="0.1"
+                           min="0"
+                           max="100"
+                           ng-model="playerMain.volume"
+                           ng-change="playerMain.setVolume(playerMain.volume)"
+                    >
+                </div>
+            </div>
+
+            <div class="skip">
+                <a class="no-select" ng-click="playerMain.clickSkip()">
+                    <i class="icon-next"></i>
+                    <span class="text-hide">next</span>
+                </a>
+
+                <a class="no-select" ng-click="playerMain.toggleLike(playerMain.current)"
+                  ng-if="playerMain.IS_MRSSPORTY"
+                >
+                    <i ng-class="playerMain.current.isLiked ? 'icon-heart' : 'icon-heart-empty'"></i>
+                    <span class="text-hide">like</span>
+                </a>
+
+                <div class="switching-slider"
+                    ng-if="playerMain.IS_MRSSPORTY && playerMain.$rootScope.user.changing_voice"
+                >
+                    <span class="switching-slider__text">
+                        Switching<br> Voice {{ playerMain.hasChangingSchedule ? 'on' : 'off' }}
+                    </span>
+                    <label class="switching-slider__switch" ng-click="playerMain.toggleChangingSchedule()">
+                        <input type="checkbox" ng-model="playerMain.hasChangingSchedule">
+                        <span class="switching-slider__slider">
+                            <span class="switching-slider__slider--dot">
+                                <span ng-if="playerMain.hasChangingSchedule">
+                                    {{ playerMain.changingCountdown }}s
+                                </span>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="playback-circle"
+         class="circle"
+         data-stroke-width="5"
+         data-progress-color="#38d4d6"
+         data-circle-color="white"
+    >
+        <div class="round-progress"></div>
+
+        <div class="circle-background"
+             ng-style="{
+              'background-image': 'url(&quot;' +
+                ((playerMain.current && playerMain.current.coverImage) ? playerMain.current.coverImage :
+                  playerMain.DEFAULT_COVER_IMAGE) +
+                '&quot;)'
+             }">
+            <div class="overlay"></div>
+        </div>
+
+        <div class="track-name">
+            <div class="inner">
+                <span ng-if="playerMain.current.artistName">
+                  {{playerMain.current.artistName}}
+                </span>
+                <br ng-if="playerMain.current.artistName">
+                <b>{{playerMain.current.title}}</b>
+            </div>
+        </div>
+
+        <div class="playback-controls">
+            <div class="play-wrapper" ng-hide="playerMain.isPlaying">
+                <span ng-click="playerMain.clickPlay()" class="play">
+                    <i class="icon-play"></i>
+                </span>
+            </div>
+            <div class="bars-container-wrapper" ng-show="playerMain.isPlaying">
+                <div ng-click="playerMain.clickPause()" class="bars-container">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                    <div class="bar4"></div>
+                    <div class="bar5"></div>
+                    <div class="bar6"></div>
+                    <div class="bar7"></div>
+                    <div class="bar8"></div>
+                    <div class="bar9"></div>
+                </div>
+            </div>
+        </div>
+        <div class="current-track-timer">
+            <div class="inner">
+                <b id="current-timer"></b> |
+                <span id="total-timer"></span>
+            </div>
+        </div>
+    </div>
+
+    <mood-controls
+      ng-if="!playerMain.IS_MRSSPORTY"
+      on-change="playerMain.onMoodChange(mood)"
+      initial="::playerMain.currentMood"
+    ></mood-controls>
+  </section>
+</section>
+
+<section class="playlist">
+  <playlist
+    queue="playerMain.queue"
+    previous="playerMain.previousQueue"
+    toggle-like="playerMain.toggleLike(track)"
+  ></playlist>
+</section>
