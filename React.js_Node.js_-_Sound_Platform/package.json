@@ -91,7 +91,7 @@
     "throttle": "^1.0.3",
     "tmp": "0.0.28",
     "uuid": "^3.3.2",
-    "validator": "^3.22.1",
+    "validator": "^13.7.0",
     "verror": "^1.10.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^1.1.2",
